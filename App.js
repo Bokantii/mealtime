@@ -19,6 +19,27 @@ import Meals from "./screens/MealTimeAppFlow/Meals";
 import Settings from "./screens/MealTimeAppFlow/Settings";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
+import BreakfastMainScreen from "./screens/MealTimeAppFlow/MealScreens/BreakfastMainScreen";
+import DessertsMainScreen from "./screens/MealTimeAppFlow/MealScreens/DessertsMainScreen";
+import DinnerMainScreen from "./screens/MealTimeAppFlow/MealScreens/DinnerMainScreen";
+import LunchMainScreen from "./screens/MealTimeAppFlow/MealScreens/LunchMainScreen";
+import SnacksMainScreen from "./screens/MealTimeAppFlow/MealScreens/SnacksMainScreen";
+import MostPopularBreakFastScreen from "./screens/MealTimeAppFlow/MealScreens/MostPopularScreens/MostPopularBreakFastScreen";
+import MostPopularLunchScreen from "./screens/MealTimeAppFlow/MealScreens/MostPopularScreens/MostPopularLunchScreen";
+import MostPopularDinnerScreen from "./screens/MealTimeAppFlow/MealScreens/MostPopularScreens/MostPopularDinnerScreen";
+import MostPopularSnackScreen from "./screens/MealTimeAppFlow/MealScreens/MostPopularScreens/MostPopularSnackScreen";
+import MostPopularDessertScreen from "./screens/MealTimeAppFlow/MealScreens/MostPopularScreens/MostPopularDessertScreen";
+import RecentlyCreatedBreakFastScreen from "./screens/MealTimeAppFlow/MealScreens/RecentlyCreatedScreens/RecentlyCreatedBreakFastScreen";
+
+import RecentlyCreatedDessertScreen from "./screens/MealTimeAppFlow/MealScreens/RecentlyCreatedScreens/RecentlyCreatedDessertScreen";
+import RecentlyCreatedDinnerScreen from "./screens/MealTimeAppFlow/MealScreens/RecentlyCreatedScreens/RecentlyCreatedDinnerScreen";
+import RecentlyCreatedLunchScreen from "./screens/MealTimeAppFlow/MealScreens/RecentlyCreatedScreens/RecentlyCreatedLunchScreen";
+import RecentlyCreatedSnackScreen from "./screens/MealTimeAppFlow/MealScreens/RecentlyCreatedScreens/RecentlyCreatedSnackScreen";
+import RecommendedPlanBreakFastScreen from "./screens/MealTimeAppFlow/MealScreens/RecommendedPlanScreens/RecommendedPlanBreakFastScreen";
+import RecommendedPlanLunchScreen from "./screens/MealTimeAppFlow/MealScreens/RecommendedPlanScreens/RecommendedPlanLunchScreen";
+import RecommendedPlanDinnerScreen from "./screens/MealTimeAppFlow/MealScreens/RecommendedPlanScreens/RecommendedPlanDinnerScreen";
+import RecommendedPlanDessertScreen from "./screens/MealTimeAppFlow/MealScreens/RecommendedPlanScreens/RecommendedPlanDessertScreen";
+import RecommendedPlanSnackScreen from "./screens/MealTimeAppFlow/MealScreens/RecommendedPlanScreens/RecommendedPlanSnackScreen";
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 function AuthStack() {
@@ -44,51 +65,51 @@ function AuthenticatedStack() {
         headerStyle: { backgroundColor: Colors.mealTimePrimary },
         headerTintColor: "black",
         contentStyle: { backgroundColor: Colors.primary100 },
+        headerShown: false,
       }}
     >
       <Stack.Screen
         name="TabNavigator"
         component={TabNavigator}
         options={{
+          // headerRight: ({ tintColor }) => (
+          //   <IconButton
+          //     icon={"log-out-outline"}
+          //     color={"black"}
+          //     size={24}
+          //     onPress={authCtx.logout}
+          //   />
+          // ),
           headerShown: false,
-          headerRight: ({ tintColor }) => (
-            <IconButton
-              icon={"log-out-outline"}
-              color={"black"}
-              size={24}
-              onPress={authCtx.logout}
-            />
-          ),
         }}
       />
       <Stack.Screen
         name="MealPlan"
         component={MealPlan}
         options={{
-          headerRight: ({ tintColor }) => (
-            <IconButton
-              icon={"log-out-outline"}
-              color={"black"}
-              size={24}
-              onPress={authCtx.logout}
-            />
-          ),
+          headerShown: false,
         }}
       />
+      <Stack.Screen name="Meals" component={Meals} />
       <Stack.Screen
-        name="Meals"
-        component={Meals}
-        options={{
-          headerShown:false,
-          headerRight: ({ tintColor }) => (
-            <IconButton
-              icon={"log-out-outline"}
-              color={"black"}
-              size={24}
-              onPress={authCtx.logout}
-            />
-          ),
-        }}
+        name="MyTabs"
+        component={MyTabs}
+        options={{ headerShown: true }}
+      />
+      <Stack.Screen
+        name="MostPopularTabs"
+        component={MostPopularTabs}
+        options={{ headerShown: true }}
+      />
+      <Stack.Screen
+        name="RecentlyCreatedMealsTabs"
+        component={RecentlyCreatedMealsTabs}
+        options={{ headerShown: true }}
+      />
+      <Stack.Screen
+        name="RecommendedPlanTabs"
+        component={RecommendedPlanTabs}
+        options={{ headerShown: true }}
       />
     </Stack.Navigator>
   );
@@ -137,6 +158,7 @@ const TabNavigator = () => {
           },
           tabBarActiveTintColor: Colors.mealTimePrimary,
           tabBarInactiveTintColor: Colors.unfocused,
+          headerShown: false,
         }}
       />
       <Tab.Screen
@@ -173,6 +195,7 @@ const TabNavigator = () => {
           },
           tabBarActiveTintColor: Colors.mealTimePrimary,
           tabBarInactiveTintColor: Colors.unfocused,
+          // headerShown:false
         }}
       />
 
@@ -192,11 +215,111 @@ const TabNavigator = () => {
           },
           tabBarActiveTintColor: Colors.mealTimePrimary,
           tabBarInactiveTintColor: Colors.unfocused,
+          headerShown: false,
         }}
       />
     </Tab.Navigator>
   );
 };
+function MyTabs({ route }) {
+  const initialRouteName = route?.params?.initialRouteName || "Breakfast";
+  return (
+    <Tab.Navigator initialRouteName={initialRouteName}>
+      <Tab.Screen name="Breakfast" component={BreakfastMainScreen} />
+      <Tab.Screen name="Lunch" component={LunchMainScreen} />
+      <Tab.Screen name="Dinner" component={DinnerMainScreen} />
+      <Tab.Screen name="Snacks" component={SnacksMainScreen} />
+      <Tab.Screen name="Desserts" component={DessertsMainScreen} />
+    </Tab.Navigator>
+  );
+}
+//MOST POPULAR
+function MostPopularTabs({ route }) {
+  const initialRouteName =
+    route?.params?.initialRouteName || "Breakfast";
+  return (
+    <Tab.Navigator initialRouteName={initialRouteName}>
+      <Tab.Screen
+        name="Breakfast"
+        component={MostPopularBreakFastScreen}
+      />
+      <Tab.Screen
+        name="Lunch"
+        component={MostPopularLunchScreen}
+      />
+      <Tab.Screen
+        name="Dinner "
+        component={MostPopularDinnerScreen}
+      />
+      <Tab.Screen
+        name="Snacks"
+        component={MostPopularSnackScreen}
+      />
+      <Tab.Screen
+        name="Desserts"
+        component={MostPopularDessertScreen}
+      />
+    </Tab.Navigator>
+  );
+}
+// RECENTLY CREATED
+function RecentlyCreatedMealsTabs({ route }) {
+  const initialRouteName =
+    route?.params?.initialRouteName || "Breakfast";
+  return (
+    <Tab.Navigator initialRouteName={initialRouteName}>
+      <Tab.Screen
+        name="Breakfast"
+        component={RecentlyCreatedBreakFastScreen}
+      />
+      <Tab.Screen
+        name="Lunch"
+        component={RecentlyCreatedLunchScreen}
+      />
+      <Tab.Screen
+        name="Dinner "
+        component={RecentlyCreatedDinnerScreen}
+      />
+      <Tab.Screen
+        name="Snacks"
+        component={RecentlyCreatedSnackScreen}
+      />
+      <Tab.Screen
+        name="Desserts"
+        component={RecentlyCreatedDessertScreen}
+      />
+    </Tab.Navigator>
+  );
+}
+//RECOMMENDED PLAN
+function RecommendedPlanTabs({ route }) {
+  const initialRouteName =
+    route?.params?.initialRouteName || "Breakfast";
+  return (
+    <Tab.Navigator initialRouteName={initialRouteName}>
+      <Tab.Screen
+        name="Breakfast"
+        component={RecommendedPlanBreakFastScreen}
+      />
+      <Tab.Screen
+        name="Lunch"
+        component={RecommendedPlanLunchScreen}
+      />
+      <Tab.Screen
+        name="Dinner "
+        component={RecommendedPlanDinnerScreen}
+      />
+      <Tab.Screen
+        name="Snacks"
+        component={RecommendedPlanSnackScreen}
+      />
+      <Tab.Screen
+        name="Desserts"
+        component={RecommendedPlanDessertScreen}
+      />
+    </Tab.Navigator>
+  );
+}
 function Root() {
   const [isTryingLogin, setIsTryingLogin] = useState(true);
   const authCtx = useContext(AuthContext);

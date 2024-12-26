@@ -1,5 +1,5 @@
 import AuthForm from "./AuthForm";
-import { View, Alert, StyleSheet,Text } from "react-native";
+import { View, Alert, StyleSheet,Text, Image } from "react-native";
 import FlatButton from "../ui/FlatButton";
 import Button from "../ui/Button";
 import { Colors } from "../../util/Colors";
@@ -55,6 +55,7 @@ const AuthContent = ({ isLogin, onAuthenticate }) => {
 
   return (
     <View styles={styles.authContent}>
+      
       <AuthForm
         isLogin={isLogin}
         onSubmit={submitHandler}
@@ -101,7 +102,8 @@ const styles = StyleSheet.create({
   },
   authPrompt:{
     textAlign:'center'
-  }
+  },
+ 
 });
 
 

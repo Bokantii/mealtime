@@ -4,6 +4,7 @@ import Button from "../ui/Button";
 import { useState } from "react";
 import FlatButton from "../ui/FlatButton";
 import CheckBox from "@react-native-community/checkbox";
+import { Image } from "react-native";
 
 const AuthForm = ({ isLogin, credentialIsInvalid, onSubmit }) => {
   const [enteredName, setEnteredName] = useState("");
@@ -51,7 +52,7 @@ const AuthForm = ({ isLogin, credentialIsInvalid, onSubmit }) => {
       confirmEmail: enteredConfirmEmail,
     });
     console.log({
-      name:enteredName,
+      name: enteredName,
       email: enteredEmail,
       password: enteredPassword,
       confirmPassword: enteredConfirmPassword,
@@ -60,7 +61,11 @@ const AuthForm = ({ isLogin, credentialIsInvalid, onSubmit }) => {
   }
   return (
     <View style={styles.form}>
-      <Text style={styles.authTitle}>{!isLogin ? "Sign Up" : "Log In"}</Text>
+      <View style={styles.header}>
+        <Image source={require("./iconImg.png")} style={styles.iconImg} />
+        <Text style={styles.authTitle}>{!isLogin ? "Sign Up" : "Log In"}</Text>
+      </View>
+
       <View style={styles.form_content}>
         {!isLogin && (
           <Input
@@ -135,12 +140,16 @@ const styles = StyleSheet.create({
     padding: 16,
     Width: "100%",
   },
-
+ header:{
+  flexDirection:'row',
+  justifyContent:"space-between",
+  alignItems:'center'
+ },
   authTitle: {
     fontSize: 30,
     fontWeight: "bold",
-    textAlign: "left",
     marginBottom: 8,
+    marginRight:"30%"
   },
   buttons: {
     marginTop: 12,
@@ -148,5 +157,9 @@ const styles = StyleSheet.create({
   terms_conditions: {
     flexDirection: "row",
     // justifyContent:'space-around'
+  },
+  iconImg: {
+    width: 50,
+    height: 50,
   },
 });

@@ -1,5 +1,6 @@
 export const Colors = {
   bodybgColor: "#FFFAF5",
+  bgDark:"#2e1a03",
   inputBgColor:"#fff",
   mealTimePrimary:'#F58700',
   inputBorderColor:"#CCCCCC",
