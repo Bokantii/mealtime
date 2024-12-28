@@ -59,6 +59,6 @@ const styles=StyleSheet.create({
     textAlign:'center',
     fontWeight:'bold',
     fontStyle:'italic',
-    marginBottom:10
+    marginBottom:20
   }
 })

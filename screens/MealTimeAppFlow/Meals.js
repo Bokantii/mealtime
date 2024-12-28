@@ -136,7 +136,7 @@ const Meals = () => {
           navScreen1={"MostPopularTabs"}
           navScreen2={"RecentlyCreatedMealsTabs"}
           navScreen3={"RecommendedPlanTabs"}
-          mealTime="Breakfast"
+          mealTime="All Meal Options"
         />
         {/* <ScrollView>
           <FlatListView

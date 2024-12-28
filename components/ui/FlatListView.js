@@ -45,12 +45,12 @@ const FlatListView = ({
 };
 
 //Default Props
-FlatListView.defaultProps = {
-  horizontal: false,
-  data: [],
-  renderItem: () => null,
-  keyExtractor: (item, index) => index.toString(),
-};
+// FlatListView.defaultProps = {
+//   horizontal: false,
+//   data: [],
+//   renderItem: () => null,
+//   keyExtractor: (item, index) => index.toString(),
+// };
 
 export default FlatListView;
 
