@@ -5,9 +5,25 @@ import { RECOMMENDED_PLAN_BREAKFAST } from "../../../../models/mealCategories/re
 import Card from "../../../../components/ui/Card";
 import { Colors } from "../../../../util/Colors";
 const RecommendedPlanBreakFastScreen = () => {
-  function renderCard({ item }) {
-    return <Card title={item.title} imgUrl={item.imgUrl} />;
-  }
+  const renderCard = ({ item }) => {
+    return (
+      <Card
+        id={item.id}
+        title={item.title}
+        imgUrl={item.imgUrl}
+        duration={item.duration}
+        numOfServings={item.numOfServings}
+        ingredientsId={item.ingredientsId}
+        ingredientQtyId={item.ingredientQtyId}
+        cookware={item.cookware}
+        instructions={item.instructions}
+        isPro={item.isPro}
+        mealCategory={item.mealCategory}
+        description={item.description}
+        tags
+      />
+    );
+  };
   return (
     <View style={styles.container}>
       <FlatListVertical
@@ -15,7 +31,7 @@ const RecommendedPlanBreakFastScreen = () => {
         keyExtractor={(item) => item.id}
         horizontal={false}
         renderItem={renderCard}
-        title={"Recommended Breakfast Plans"}
+        title={"Recommended Plan"}
         numColumns={2}
       />
     </View>

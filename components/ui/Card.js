@@ -1,14 +1,48 @@
 import React from "react";
 import { View, StyleSheet, Image, Text, Pressable } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-const Card = ({ imgUrl, title, onPress, isPro, description }) => {
+import { useNavigation } from "@react-navigation/native";
+const Card = ({
+  id,
+  title,
+  imgUrl,
+  duration,
+  numOfServings,
+  ingredientsId,
+  ingredientQtyId,
+  cookware,
+  instructions,
+  isPro,
+  mealCategory,
+  description,
+  tags,
+  onPress,
+}) => {
+  const navigation = useNavigation();
+  function navToDetails() {
+    navigation.navigate("MealDetail", {
+      id,
+      title,
+      imgUrl,
+      duration,
+      numOfServings,
+      ingredientsId,
+      ingredientQtyId,
+      cookware,
+      instructions,
+      isPro,
+      mealCategory,
+      description,
+      tags,
+    });
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <Pressable onPress={onPress}>
+        <Pressable onPress={navToDetails}>
           <Image source={{ uri: imgUrl }} style={styles.img} />
         </Pressable>
-
         <Pressable style={styles.iconContainer} onPress={onPress}>
           <AntDesign name="plus" size={19} color="black" style={styles.icon} />
         </Pressable>
@@ -27,7 +61,6 @@ const styles = StyleSheet.create({
   content: {
     width: 150,
     height: 150,
-    
   },
   img: {
     width: "100%",

@@ -5,9 +5,25 @@ import { RECENTLY_CREATED_BREAKFAST } from "../../../../models/mealCategories/re
 import Card from "../../../../components/ui/Card";
 import { Colors } from "../../../../util/Colors";
 const RecentlyCreatedBreakFastScreen = () => {
-  function renderCard({ item }) {
-    return <Card title={item.title} imgUrl={item.imgUrl} />;
-  }
+  const renderCard = ({ item }) => {
+    return (
+      <Card
+        id={item.id}
+        title={item.title}
+        imgUrl={item.imgUrl}
+        duration={item.duration}
+        numOfServings={item.numOfServings}
+        ingredientsId={item.ingredientsId}
+        ingredientQtyId={item.ingredientQtyId}
+        cookware={item.cookware}
+        instructions={item.instructions}
+        isPro={item.isPro}
+        mealCategory={item.mealCategory}
+        description={item.description}
+        tags
+      />
+    );
+  };
   return (
     <View style={styles.container}>
       <FlatListVertical
@@ -15,7 +31,7 @@ const RecentlyCreatedBreakFastScreen = () => {
         keyExtractor={(item) => item.id}
         horizontal={false}
         renderItem={renderCard}
-        title={"Recently Created Breakfast Options"}
+        title={"Recently Created"}
         numColumns={2}
       />
     </View>

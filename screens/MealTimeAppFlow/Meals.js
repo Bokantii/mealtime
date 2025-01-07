@@ -27,63 +27,37 @@ import { RECOMMENDED_PLAN_BREAKFAST } from "../../models/mealCategories/recommen
 import { MOST_POPULAR_BREAKFAST } from "../../models/mealCategories/mostPopular/breakfastClass";
 import { MOST_POPULAR_SNACKS } from "../../models/mealCategories/mostPopular/snackClass";
 import ScrollViewUI from "../../components/ui/ScrollViewUI";
-const Tab = createMaterialTopTabNavigator();
-const Stack = createStackNavigator();
-function MyTabs({ route }) {
-  const initialRouteName = route?.params?.initialRouteName || "Breakfast";
-  return (
-    <Tab.Navigator initialRouteName={initialRouteName}>
-      <Tab.Screen name="Breakfast" component={Breakfast} />
-      <Tab.Screen name="Lunch" component={Lunch} />
-      <Tab.Screen name="Dinner" component={Dinner} />
-      <Tab.Screen name="Snacks" component={Snacks} />
-      <Tab.Screen name="Desserts" component={Desserts} />
-    </Tab.Navigator>
-  );
-}
-function MealStack() {
-  return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="MyTabs" component={MyTabs} />
-      <Stack.Screen name="Meals" component={Meals} />
-    </Stack.Navigator>
-  );
-}
-function Navigation() {
-  return (
-    <NavigationContainer>
-      <MealStack />
-    </NavigationContainer>
-  );
-}
-const data = [
-  {
-    id: "1",
-    description: "item 1",
-    imgUrl:
-      "https://media.istockphoto.com/id/1064442674/photo/trout-fish-with-garlic-lemon-butter-sauce-parsley-close-up-in-a-copper-frying-pan-horizontal.jpg?s=612x612&w=0&k=20&c=5bvIO8eSGhXDjKraWrhaa-ftvFKLXm9_TF4vXn3iUG8=",
-  },
-  {
-    id: "2",
-    description: "item 2",
-    imgUrl:
-      "https://media.istockphoto.com/id/1064442674/photo/trout-fish-with-garlic-lemon-butter-sauce-parsley-close-up-in-a-copper-frying-pan-horizontal.jpg?s=612x612&w=0&k=20&c=5bvIO8eSGhXDjKraWrhaa-ftvFKLXm9_TF4vXn3iUG8=",
-  },
-  {
-    id: "3",
-    description: "item 3",
-    imgUrl:
-      "https://media.istockphoto.com/id/1064442674/photo/trout-fish-with-garlic-lemon-butter-sauce-parsley-close-up-in-a-copper-frying-pan-horizontal.jpg?s=612x612&w=0&k=20&c=5bvIO8eSGhXDjKraWrhaa-ftvFKLXm9_TF4vXn3iUG8=",
-  },
-];
-const renderCard = ({ item }) => {
-  return <Card title={item.title} imgUrl={item.imgUrl} />;
-};
+import { mealContext } from "../../store/meals-context";
+
 const Meals = () => {
+  const renderCard = ({ item }) => {
+    return (
+      <Card
+        id={item.id}
+        title={item.title}
+        imgUrl={item.imgUrl}
+        duration={item.duration}
+        numOfServings={item.numOfServings}
+        ingredientsId={item.ingredientsId}
+        ingredientQtyId={item.ingredientQtyId}
+        cookware={item.cookware}
+        instructions={item.instructions}
+        isPro={item.isPro}
+        mealCategory={item.mealCategory}
+        description={item.description}
+        tags
+        onPress={navToDetails}
+      />
+    );
+  };
+
   const fadeAnim = useRef(new Animated.Value(0)).current; //Start opacity at 0
   const translateY = useRef(new Animated.Value(50)).current; //Start below screen
 
   const navigation = useNavigation();
+  function navToDetails() {
+    navigation.navigate("MealDetail");
+  }
   const [isPopoverVisible, setIsPopoverVisible] = useState(true);
   const { hasMealPlan } = useContext(AuthContext);
 
@@ -136,35 +110,8 @@ const Meals = () => {
           navScreen1={"MostPopularTabs"}
           navScreen2={"RecentlyCreatedMealsTabs"}
           navScreen3={"RecommendedPlanTabs"}
-          mealTime="All Meal Options"
+          mealTime="Meals"
         />
-        {/* <ScrollView>
-          <FlatListView
-            title="Most Popular"
-            data={MOST_POPULAR_BREAKFAST}
-            renderItem={renderCard}
-            keyExtractor={(item) => item.id}
-            horizontal={true}
-            screenName="Breakfast"
-            navScreen={"MealCategoryTabs"}
-          />
-          <FlatListView
-            title="Recently Created"
-            data={RECENTLY_CREATED_BREAKFAST}
-            renderItem={renderCard}
-            keyExtractor={(item) => item.id}
-            horizontal={true}
-            screenName="Lunch"
-          />
-          <FlatListView
-            title="Recommended Plan"
-            data={RECOMMENDED_PLAN_BREAKFAST}
-            renderItem={renderCard}
-            keyExtractor={(item) => item.id}
-            horizontal={true}
-            screenName="Dinner"
-          />
-        </ScrollView> */}
       </View>
 
       {/* Popover Content */}

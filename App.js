@@ -20,11 +20,6 @@ import Settings from "./screens/MealTimeAppFlow/Settings";
 import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
-import BreakfastMainScreen from "./screens/MealTimeAppFlow/MealScreens/BreakfastMainScreen";
-import DessertsMainScreen from "./screens/MealTimeAppFlow/MealScreens/DessertsMainScreen";
-import DinnerMainScreen from "./screens/MealTimeAppFlow/MealScreens/DinnerMainScreen";
-import LunchMainScreen from "./screens/MealTimeAppFlow/MealScreens/LunchMainScreen";
-import SnacksMainScreen from "./screens/MealTimeAppFlow/MealScreens/SnacksMainScreen";
 import MostPopularBreakFastScreen from "./screens/MealTimeAppFlow/MealScreens/MostPopularScreens/MostPopularBreakFastScreen";
 import MostPopularLunchScreen from "./screens/MealTimeAppFlow/MealScreens/MostPopularScreens/MostPopularLunchScreen";
 import MostPopularDinnerScreen from "./screens/MealTimeAppFlow/MealScreens/MostPopularScreens/MostPopularDinnerScreen";
@@ -42,6 +37,8 @@ import RecommendedPlanDessertScreen from "./screens/MealTimeAppFlow/MealScreens/
 import RecommendedPlanSnackScreen from "./screens/MealTimeAppFlow/MealScreens/RecommendedPlanScreens/RecommendedPlanSnackScreen";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { Pressable } from "react-native";
+import MealDetail from "./screens/MealTimeAppFlow/MealDetail";
+import MostPopularTabs from "./screens/MealTimeAppFlow/Tabs/MostPopularTabs";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -94,11 +91,8 @@ function AuthenticatedStack() {
         }}
       />
       <Stack.Screen name="Meals" component={Meals} />
-      <Stack.Screen
-        name="MyTabs"
-        component={MyTabs}
-        options={{ headerShown: true }}
-      />
+      <Stack.Screen name="MealDetail" component={MealDetail}/>
+     
       <Stack.Screen
         name="MostPopularTabs"
         component={MostPopularTabs}
@@ -224,125 +218,18 @@ const TabNavigator = () => {
     </Tab.Navigator>
   );
 };
-function MyTabs({ route }) {
-  const initialRouteName = route?.params?.initialRouteName || "Breakfast";
-  return (
-    <Tab.Navigator initialRouteName={initialRouteName}>
-      <Tab.Screen name="Breakfast" component={BreakfastMainScreen} />
-      <Tab.Screen name="Lunch" component={LunchMainScreen} />
-      <Tab.Screen name="Dinner" component={DinnerMainScreen} />
-      <Tab.Screen name="Snacks" component={SnacksMainScreen} />
-      <Tab.Screen name="Desserts" component={DessertsMainScreen} />
-    </Tab.Navigator>
-  );
-}
-//MOST POPULAR
-function MostPopularTabs({ route, navigation }) {
-  const initialRouteName = route?.params?.initialRouteName || "Breakfast";
-  function navBack() {
-    navigation.goBack();
-    console.log("navigating back...");
-  }
-  return (
-    <View style={styles.mostPopularTabscontainer}>
-      <Pressable onPress={navBack} style={styles.goBack}>
-        <AntDesign name="arrowleft" size={24} color="black" />
-      </Pressable>
-
-      <Tab.Navigator
-        initialRouteName={initialRouteName}
-        screenOptions={{ headerShown: false }}
-      >
-        <Tab.Screen
-          name="Breakfast"
-          component={MostPopularBreakFastScreen}
-          options={{
-            tabBarIcon: ({ focused }) => {
-              return (
-                <MaterialIcons
-                  name="free-breakfast"
-                  size={24}
-                  color={focused ? Colors.mealTimePrimary : Colors.unfocused}
-                />
-              );
-            },
-            tabBarActiveTintColor: Colors.mealTimePrimary,
-            tabBarInactiveTintColor: Colors.unfocused,
-          }}
-        />
-        <Tab.Screen
-          name="Lunch"
-          component={MostPopularLunchScreen}
-          options={{
-            tabBarIcon: ({ focused }) => {
-              return (
-                <MaterialIcons
-                  name="lunch-dining"
-                  size={24}
-                  color={focused ? Colors.mealTimePrimary : Colors.unfocused}
-                />
-              );
-            },
-            tabBarActiveTintColor: Colors.mealTimePrimary,
-            tabBarInactiveTintColor: Colors.unfocused,
-          }}
-        />
-        <Tab.Screen
-          name="Dinner "
-          component={MostPopularDinnerScreen}
-          options={{
-            tabBarIcon: ({ focused }) => {
-              return (
-                <MaterialIcons
-                  name="dinner-dining"
-                  size={24}
-                  color={focused ? Colors.mealTimePrimary : Colors.unfocused}
-                />
-              );
-            },
-            tabBarActiveTintColor: Colors.mealTimePrimary,
-            tabBarInactiveTintColor: Colors.unfocused,
-          }}
-        />
-        <Tab.Screen
-          name="Snacks"
-          component={MostPopularSnackScreen}
-          options={{
-            tabBarIcon: ({ focused }) => {
-              return (
-                <MaterialCommunityIcons
-                  name="food-hot-dog"
-                  size={24}
-                  color={focused ? Colors.mealTimePrimary : Colors.unfocused}
-                />
-              );
-            },
-            tabBarActiveTintColor: Colors.mealTimePrimary,
-            tabBarInactiveTintColor: Colors.unfocused,
-          }}
-        />
-        <Tab.Screen
-          name="Desserts"
-          component={MostPopularDessertScreen}
-          options={{
-            tabBarIcon: ({ focused }) => {
-              return (
-                <MaterialIcons
-                  name="cake"
-                  size={24}
-                  color={focused ? Colors.mealTimePrimary : Colors.unfocused}
-                />
-              );
-            },
-            tabBarActiveTintColor: Colors.mealTimePrimary,
-            tabBarInactiveTintColor: Colors.unfocused,
-          }}
-        />
-      </Tab.Navigator>
-    </View>
-  );
-}
-// RECENTLY CREATED
+// function MyTabs({ route }) {
+//   const initialRouteName = route?.params?.initialRouteName || "Breakfast";
+//   return (
+//     <Tab.Navigator initialRouteName={initialRouteName}>
+//       <Tab.Screen name="Breakfast" component={BreakfastMainScreen} />
+//       <Tab.Screen name="Lunch" component={LunchMainScreen} />
+//       <Tab.Screen name="Dinner" component={DinnerMainScreen} />
+//       <Tab.Screen name="Snacks" component={SnacksMainScreen} />
+//       <Tab.Screen name="Desserts" component={DessertsMainScreen} />
+//     </Tab.Navigator>
+//   );
+// }
 function RecentlyCreatedMealsTabs({ route, navigation }) {
   function navBack() {
     navigation.goBack();
@@ -515,10 +402,7 @@ const styles = StyleSheet.create({
     padding: 30,
     alignSelf: "flex-start", // Aligns the arrow to the start
   },
-  mostPopularTabscontainer: {
-    flex: 1,
-    backgroundColor: Colors.bodybgColor,
-  },
+  
   recentlyCreatedMealsTabscontainer: {
     flex: 1,
     backgroundColor: Colors.bodybgColor,

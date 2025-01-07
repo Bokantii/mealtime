@@ -5,9 +5,25 @@ import { MOST_POPULAR_BREAKFAST } from "../../../../models/mealCategories/mostPo
 import Card from "../../../../components/ui/Card";
 import { Colors } from "../../../../util/Colors";
 const MostPopularBreakFastScreen = () => {
-  function renderCard({ item }) {
-    return <Card title={item.title} imgUrl={item.imgUrl} />;
-  }
+  const renderCard = ({ item }) => {
+    return (
+      <Card
+        id={item.id}
+        title={item.title}
+        imgUrl={item.imgUrl}
+        duration={item.duration}
+        numOfServings={item.numOfServings}
+        ingredientsId={item.ingredientsId}
+        ingredientQtyId={item.ingredientQtyId}
+        cookware={item.cookware}
+        instructions={item.instructions}
+        isPro={item.isPro}
+        mealCategory={item.mealCategory}
+        description={item.description}
+        tags
+      />
+    );
+  };
   return (
     <View style={styles.container}>
       <FlatListVertical
@@ -15,7 +31,7 @@ const MostPopularBreakFastScreen = () => {
         keyExtractor={(item) => item.id}
         horizontal={false}
         renderItem={renderCard}
-        title={"Most Popular Breakfast Options"}
+        title={"Most Popular"}
         numColumns={2}
       />
     </View>

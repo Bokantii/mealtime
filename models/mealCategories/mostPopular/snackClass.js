@@ -1,122 +1,119 @@
+import Meal from "../../mealsModel";
+
 export const MOST_POPULAR_SNACKS = [
-  {
-    id: "1",
-    title: "Classic Popcorn",
-    imgUrl:
-      "https://media.istockphoto.com/id/2068529080/photo/popcorn.webp?a=1&b=1&s=612x612&w=0&k=20&c=9DP_pDK62cJxJ9XoaBgewFX_u1exI3dSkUQ4NVlo6Yk=",
-  },
-  {
-    id: "2",
-    title: "Nachos with Cheese Dip",
-    imgUrl:
-      "https://media.istockphoto.com/id/1003817180/photo/chili-cheese-dip.webp?a=1&b=1&s=612x612&w=0&k=20&c=u3zO5XVFPYxlDcMvrZ8DwM8l8eOdVEtDAgR3H2ORp3c=",
-  },
-  {
-    id: "3",
-    title: "Chocolate Chip Cookies",
-    imgUrl:
-      "https://media.istockphoto.com/id/1265001647/photo/chocolate-chip-cookies.webp?a=1&b=1&s=612x612&w=0&k=20&c=OYE2AnTuQ5G91zv0gm0EFevfuceZnJ6dQ6DwUdaEHEg=",
-  },
-  {
-    id: "4",
-    title: "Trail Mix",
-    imgUrl:
-      "https://media.istockphoto.com/id/483585729/photo/trail-mix-on-white.webp?a=1&b=1&s=612x612&w=0&k=20&c=SuGgFUVTwlaFtUSL8pdJbqjYg71h_xZbLZbGbtLtWaA=",
-  },
-  {
-    id: "5",
-    title: "Fruit Salad",
-    imgUrl:
-      "https://media.istockphoto.com/id/1225981808/photo/healthy-homemade-fruit-salad-bowl-shot-from-above.webp?a=1&b=1&s=612x612&w=0&k=20&c=llSU8kL67h7yEoznAwgbtRxw3VyS3K6wAPK7Q9LwO8Y=",
-  },
-  {
-    id: "6",
-    title: "Veggie Sticks with Hummus",
-    imgUrl:
-      "https://media.istockphoto.com/id/1400924594/photo/plain-hummus-and-veggie-tray-with-pita.webp?a=1&b=1&s=612x612&w=0&k=20&c=XYte_HlF8Ik5H5JgC1Z9UT1fMngLeSDHfjucq0t5OO4=",
-  },
-  {
-    id: "7",
-    title: "Peanut Butter Crackers",
-    imgUrl:
-      "https://media.istockphoto.com/id/485968331/photo/healthy-peanut-butter-sandwich-crackers.webp?a=1&b=1&s=612x612&w=0&k=20&c=XOzp0LfGIR6Us5tMXhbr4GYGuWTXdeHnIxTFv9L72ik=",
-  },
-  {
-    id: "8",
-    title: "Cheese and Crackers",
-    imgUrl:
-      "https://media.istockphoto.com/id/1445272533/photo/pepperoni-lunch-box.webp?a=1&b=1&s=612x612&w=0&k=20&c=R8b_1llcvXQsbYUQGkp8wEcBJjGdvdZIOgSglT27oas=",
-  },
-  {
-    id: "9",
-    title: "Granola Bars",
-    imgUrl:
-      "https://media.istockphoto.com/id/185099151/photo/granola-bar.webp?a=1&b=1&s=612x612&w=0&k=20&c=ldm2BSMYERpx5nbXwRmyvnti9RrTns1x1Ho6nSklYa4=",
-  },
-  {
-    id: "10",
-    title: "Mini Pretzels",
-    imgUrl:
-      "https://media.istockphoto.com/id/1061948202/photo/pretzels-on-dark-red-black-background.webp?a=1&b=1&s=612x612&w=0&k=20&c=pb0Rk60NFL73GBWt9HIyNAZGEZmtj_kJnVAxsfnPEzo=",
-  },
-  {
-    id: "11",
-    title: "Yogurt with Berries",
-    imgUrl:
-      "https://media.istockphoto.com/id/487468481/photo/bowl-of-fresh-mixed-berries-and-yogurt.webp?a=1&b=1&s=612x612&w=0&k=20&c=VdzGJSGXgiITHwV1_sdzKANLdwOd67nlZDOHyspnfL4=",
-  },
-  {
-    id: "12",
-    title: "Popcorn Chicken",
-    imgUrl:
-      "https://media.istockphoto.com/id/470177926/photo/homemade-crispy-popcorn-chicken.webp?a=1&b=1&s=612x612&w=0&k=20&c=BO4zq-l0y9_gsjdCZRoJJSHNBzuFFelTIZbDSgRZ9Rs=",
-  },
-  {
-    id: "13",
-    title: "Banana Chips",
-    imgUrl:
-      "https://media.istockphoto.com/id/1315105687/photo/banana-chips-healthy-food-dry-fruits-and-healthy-vegetable-chips-healthy-vegan-snack-on.webp?a=1&b=1&s=612x612&w=0&k=20&c=lByUC5wYM8NgFy941U1jVwaIRt9mWJEitgBmw60oie8=",
-  },
-  {
-    id: "14",
-    title: "Mixed Nuts",
-    imgUrl:
-      "https://media.istockphoto.com/id/895712948/photo/mixed-nuts-on-white.webp?a=1&b=1&s=612x612&w=0&k=20&c=hiOyJ0ti_8siiNSkpfxUAZ7TG-lEZRCnD_7KY0pQmNg=",
-  },
-  {
-    id: "15",
-    title: "Mini Pizzas",
-    imgUrl:
-      "https://media.istockphoto.com/id/1287297639/photo/small-mixed-pizza-with-pepperoni-sausage-and-cheese-on-wooden-table.webp?a=1&b=1&s=612x612&w=0&k=20&c=hjwO-Q4nFMOAKIYgOI1Cl2erlvWlUVLpI7IrvexhJ20=",
-  },
-  {
-    id: "16",
-    title: "Energy Balls",
-    imgUrl:
-      "https://media.istockphoto.com/id/1178621382/photo/cocoa-and-oat-energy-balls.webp?a=1&b=1&s=612x612&w=0&k=20&c=neVXOXjAkDntr19xRknmeRTEfrDC1ILUluVHuhy-nkg=",
-  },
-  {
-    id: "17",
-    title: "Cheesy Breadsticks",
-    imgUrl:
-      "https://media.istockphoto.com/id/876274646/photo/italian-style-cheese-bread-sticks-with-marinara-sauce.webp?a=1&b=1&s=612x612&w=0&k=20&c=CTRo4RlLRfm6yHVGa5qO5Zr3dWZ4osPHClf2iLkrU7g=",
-  },
-  {
-    id: "18",
-    title: "Rice Cakes with Peanut Butter",
-    imgUrl:
-      "https://media.istockphoto.com/id/155393047/photo/healthy-breakfast.webp?a=1&b=1&s=612x612&w=0&k=20&c=6zBDmguqASI_43lU5im1N2FJsuqaPDNyxnz3UW-0m2A=",
-  },
-  {
-    id: "19",
-    title: "Soft Pretzels",
-    imgUrl:
-      "https://media.istockphoto.com/id/115984173/photo/soft-pretzel-on-white.webp?a=1&b=1&s=612x612&w=0&k=20&c=lO0OKD1BjP4bBu7chLtC6crELr_ItdOJitS5F0Rd5LM=",
-  },
-  {
-    id: "20",
-    title: "Crispy Kale Chips",
-    imgUrl:
-      "https://media.istockphoto.com/id/1343585525/photo/baked-kale-chips-in-a-wooden-bowl.webp?a=1&b=1&s=612x612&w=0&k=20&c=8-PoD5Kz4PC9b_j0U4LEKZsXPSGOrOsaun4ZlS6GEzM=",
-  },
+  new Meal(
+    "1",
+    "Classic Popcorn",
+    "https://media.istockphoto.com/id/2068529080/photo/popcorn.webp?a=1&b=1&s=612x612&w=0&k=20&c=9DP_pDK62cJxJ9XoaBgewFX_u1exI3dSkUQ4NVlo6Yk=",
+    5,
+    2,
+    ["popcorn-kernels", "butter", "salt"],
+    ["1/2 cup", "2 tbsp", "1 tsp"],
+    ["stovetop", "pot", "spoon"],
+    [
+      "Heat the butter in a large pot over medium heat until melted.",
+      "Add the popcorn kernels and cover the pot with a lid. Shake the pot occasionally to prevent burning.",
+      "Once the popping slows, remove from heat and season with salt. Serve immediately."
+    ],
+    false,
+    "Snacks",
+    "Freshly popped corn with a hint of butter.",
+    ["Quick", "Gluten-Free", "Comfort Food"]
+  ),
+  new Meal(
+    "2",
+    "Nachos with Cheese Dip",
+    "https://media.istockphoto.com/id/1003817180/photo/chili-cheese-dip.webp?a=1&b=1&s=612x612&w=0&k=20&c=u3zO5XVFPYxlDcMvrZ8DwM8l8eOdVEtDAgR3H2ORp3c=",
+    10,
+    4,
+    ["tortilla-chips", "cheese", "milk", "jalapenos"],
+    ["200g", "100g", "1/4 cup", "2 tbsp"],
+    ["microwave", "bowl"],
+    [
+      "Place the cheese and milk in a microwave-safe bowl and microwave for 30-second intervals, stirring in between until smooth.",
+      "Slice the jalapenos thinly and mix them into the cheese dip.",
+      "Serve the cheese dip warm alongside tortilla chips for dipping."
+    ],
+    false,
+    "Snacks",
+    "Crispy nachos with a creamy cheese dip.",
+    ["Quick", "Cheesy", "Party"]
+  ),
+  new Meal(
+    "3",
+    "Chocolate Chip Cookies",
+    "https://media.istockphoto.com/id/1265001647/photo/chocolate-chip-cookies.webp?a=1&b=1&s=612x612&w=0&k=20&c=OYE2AnTuQ5G91zv0gm0EFevfuceZnJ6dQ6DwUdaEHEg=",
+    20,
+    12,
+    ["flour", "butter", "sugar", "chocolate-chips", "eggs"],
+    ["2 cups", "1/2 cup", "1 cup", "1 cup", "1"],
+    ["mixing-bowl", "oven", "spoon"],
+    [
+      "Preheat the oven to 350°F (175°C).",
+      "In a mixing bowl, cream together the butter and sugar until light and fluffy. Add the egg and mix well.",
+      "Gradually stir in the flour and chocolate chips. Drop spoonfuls of the dough onto a baking tray.",
+      "Bake for 10-12 minutes until golden. Let cool before serving."
+    ],
+    true,
+    "Snacks",
+    "Soft and chewy cookies with gooey chocolate chips.",
+    ["Baking", "Sweet", "Comfort Food"]
+  ),
+  new Meal(
+    "4",
+    "Trail Mix",
+    "https://media.istockphoto.com/id/483585729/photo/trail-mix-on-white.webp?a=1&b=1&s=612x612&w=0&k=20&c=SuGgFUVTwlaFtUSL8pdJbqjYg71h_xZbLZbGbtLtWaA=",
+    5,
+    4,
+    ["nuts", "dried-fruits", "seeds", "chocolate-chips"],
+    ["1 cup", "1 cup", "1/2 cup", "1/4 cup"],
+    ["bowl", "spoon"],
+    [
+      "Combine the nuts, dried fruits, seeds, and chocolate chips in a large bowl.",
+      "Mix thoroughly to distribute all the ingredients evenly.",
+      "Store in an airtight container for a quick and healthy snack."
+    ],
+    false,
+    "Snacks",
+    "A healthy mix of nuts, dried fruits, and seeds.",
+    ["Healthy", "Gluten-Free", "Quick"]
+  ),
+  new Meal(
+    "5",
+    "Fruit Salad",
+    "https://media.istockphoto.com/id/1225981808/photo/healthy-homemade-fruit-salad-bowl-shot-from-above.webp?a=1&b=1&s=612x612&w=0&k=20&c=llSU8kL67h7yEoznAwgbtRxw3VyS3K6wAPK7Q9LwO8Y=",
+    10,
+    2,
+    ["apple", "banana", "orange", "berries"],
+    ["1", "1", "1", "1/2 cup"],
+    ["knife", "bowl"],
+    [
+      "Wash and peel the fruits as needed. Cut them into bite-sized pieces.",
+      "Combine all the chopped fruits in a large bowl.",
+      "Mix gently and serve fresh. Optionally, add a drizzle of honey or a squeeze of lemon juice."
+    ],
+    false,
+    "Snacks",
+    "A refreshing mix of seasonal fruits.",
+    ["Healthy", "Vegan", "Quick"]
+  ),
+  new Meal(
+    "6",
+    "Veggie Sticks with Hummus",
+    "https://media.istockphoto.com/id/1400924594/photo/plain-hummus-and-veggie-tray-with-pita.webp?a=1&b=1&s=612x612&w=0&k=20&c=XYte_HlF8Ik5H5JgC1Z9UT1fMngLeSDHfjucq0t5OO4=",
+    10,
+    2,
+    ["carrots", "cucumbers", "hummus"],
+    ["1 cup", "1 cup", "1/2 cup"],
+    ["knife", "bowl"],
+    [
+      "Wash and peel the carrots and cucumbers. Slice them into sticks.",
+      "Arrange the veggie sticks neatly on a plate.",
+      "Serve with hummus in a small bowl for dipping."
+    ],
+    false,
+    "Snacks",
+    "Crunchy veggie sticks served with creamy hummus.",
+    ["Healthy", "Vegan", "Quick"]
+  )
 ];
