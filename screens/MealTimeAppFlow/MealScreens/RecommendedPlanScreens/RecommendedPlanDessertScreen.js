@@ -4,7 +4,7 @@ import FlatListVertical from "../../../../components/ui/FlatListVertical";
 import { RECOMMENDED_DESSERTS } from "../../../../models/mealCategories/recommendedPlan/dessertClass";
 import Card from "../../../../components/ui/Card";
 import { Colors } from "../../../../util/Colors";
-const RecommendedPlanDessertScreen = () => {
+const RecommendedPlanDessertScreen = ({searchQuery}) => {
   const renderCard = ({ item }) => {
     return (
       <Card
@@ -33,6 +33,7 @@ const RecommendedPlanDessertScreen = () => {
         renderItem={renderCard}
         title={"Recommended Plan"}
         numColumns={2}
+        searchQuery={searchQuery}
       />
     </View>
   );

@@ -9,6 +9,7 @@ export const MOST_POPULAR_SNACKS = [
     2,
     ["popcorn-kernels", "butter", "salt"],
     ["1/2 cup", "2 tbsp", "1 tsp"],
+    3, // Number of instructions
     ["stovetop", "pot", "spoon"],
     [
       "Heat the butter in a large pot over medium heat until melted.",
@@ -28,6 +29,7 @@ export const MOST_POPULAR_SNACKS = [
     4,
     ["tortilla-chips", "cheese", "milk", "jalapenos"],
     ["200g", "100g", "1/4 cup", "2 tbsp"],
+    3, // Number of instructions
     ["microwave", "bowl"],
     [
       "Place the cheese and milk in a microwave-safe bowl and microwave for 30-second intervals, stirring in between until smooth.",
@@ -47,6 +49,7 @@ export const MOST_POPULAR_SNACKS = [
     12,
     ["flour", "butter", "sugar", "chocolate-chips", "eggs"],
     ["2 cups", "1/2 cup", "1 cup", "1 cup", "1"],
+    4, // Number of instructions
     ["mixing-bowl", "oven", "spoon"],
     [
       "Preheat the oven to 350°F (175°C).",
@@ -67,6 +70,7 @@ export const MOST_POPULAR_SNACKS = [
     4,
     ["nuts", "dried-fruits", "seeds", "chocolate-chips"],
     ["1 cup", "1 cup", "1/2 cup", "1/4 cup"],
+    3, // Number of instructions
     ["bowl", "spoon"],
     [
       "Combine the nuts, dried fruits, seeds, and chocolate chips in a large bowl.",
@@ -86,6 +90,7 @@ export const MOST_POPULAR_SNACKS = [
     2,
     ["apple", "banana", "orange", "berries"],
     ["1", "1", "1", "1/2 cup"],
+    3, // Number of instructions
     ["knife", "bowl"],
     [
       "Wash and peel the fruits as needed. Cut them into bite-sized pieces.",
@@ -105,6 +110,7 @@ export const MOST_POPULAR_SNACKS = [
     2,
     ["carrots", "cucumbers", "hummus"],
     ["1 cup", "1 cup", "1/2 cup"],
+    3, // Number of instructions
     ["knife", "bowl"],
     [
       "Wash and peel the carrots and cucumbers. Slice them into sticks.",

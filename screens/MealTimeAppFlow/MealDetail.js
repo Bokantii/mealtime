@@ -1,13 +1,33 @@
 import React from "react";
-import { View, Text, Image, Pressable, FlatList, Animated } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  Pressable,
+  FlatList,
+  Animated,
+  Alert,
+  Modal,
+} from "react-native";
 import { MealContext } from "../../store/meals-context";
 import { StyleSheet } from "react-native";
 import { Colors } from "../../util/Colors";
 import { MaterialIcons } from "@expo/vector-icons";
 import Entypo from "@expo/vector-icons/Entypo";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-
+import { FavouriteContext } from "../../store/favourites-context";
+import { useContext } from "react";
+import Meal from "../../models/mealsModel";
+import { useState, useEffect } from "react";
+import { ALL_MEALS } from "../../data/ALLMEALS";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { TouchableOpacity } from "react-native";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import Ionicons from '@expo/vector-icons/Ionicons';
+import Feather from '@expo/vector-icons/Feather';
 const renderCookWare = ({ item }) => {
   return <Text style={styles.cookwareItem}>{item}</Text>;
 };
@@ -20,7 +40,7 @@ const CookwareScreen = ({ route }) => {
       {cookware && cookware.length > 0 ? (
         <FlatList
           data={cookware}
-          keyExtractor={(item, index) => index.toString()}
+          keyExtractor={(item, index) => `${item}-${index}`} // Ensure uniqueness
           renderItem={renderCookWare}
         />
       ) : (
@@ -32,59 +52,159 @@ const CookwareScreen = ({ route }) => {
 //Ingredients Screen
 const IngredientScreen = ({ route }) => {
   const { ingredientsId, ingredientQtyId } = route.params;
+
+  const renderIngredient = ({ item, index }) => (
+    <View style={styles.ingredientRow}>
+      <Text style={styles.ingredientName}>{item}</Text>
+      <Text style={styles.ingredientQty}>{ingredientQtyId[index]}</Text>
+    </View>
+  );
+
   return (
-    <View style={styles.tabContent}>
+    <View style={{ flex: 1, backgroundColor: Colors.bodybgColor }}>
       {ingredientsId && ingredientsId.length > 0 ? (
-        ingredientsId.map((item, index) => (
-          <View key={index} style={styles.ingredientRow}>
-            <Text style={styles.ingredientName}>{item}</Text>
-            <Text style={styles.ingredientQty}>{ingredientQtyId[index]}</Text>
-          </View>
-        ))
+        <FlatList
+          data={ingredientsId}
+          keyExtractor={(item, index) => `${item}-${index}`}
+          renderItem={({ item, index }) => renderIngredient({ item, index })}
+        />
       ) : (
         <Text style={styles.emptyText}>No Ingredient Listed</Text>
       )}
     </View>
   );
 };
-// Instruction Screen
+
 const InstructionScreen = ({ route }) => {
-  const { instructions, ingredientsId,ingredientQtyId } = route.params;
-  console.log("Instructions:", instructions);
-  console.log("Ingredients:", ingredientsId);
+  const { instructions, ingredientsId, ingredientQtyId, numberOfInstructions } =
+    route.params;
+
+  const renderInstructionStep = ({ item, index }) => (
+    <View style={styles.cookingSteps}>
+      <View style={styles.cookingStepIndex}>
+        <Text style={styles.cookingStepIndexText}>{index + 1}</Text>
+      </View>
+      <View style={styles.instructionStep}>
+        <Text style={styles.instructionStepText}>{item}</Text>
+
+        {ingredientsId && ingredientQtyId && ingredientsId.length > 0 ? (
+          <FlatList
+            data={ingredientsId}
+            keyExtractor={(item, i) => `${item}-${i}`}
+            renderItem={({ item, index }) => (
+              <View style={styles.ingredientRow}>
+                <Text style={styles.ingredientName}>{item}</Text>
+                <Text style={styles.ingredientQty}>
+                  {ingredientQtyId[index]}
+                </Text>
+              </View>
+            )}
+          />
+        ) : (
+          <Text style={styles.emptyText}>No ingredients listed</Text>
+        )}
+      </View>
+    </View>
+  );
 
   return (
-    <View style={styles.tabContent}>
-      {instructions && instructions.length > 0 ? (
-        instructions.map((step, index) => (
-          <View key={index} style={styles.cookingSteps}>
-            <View style={styles.cookingStepIndex}>
-              <Text style={styles.cookingStepIndexText}>{index + 1}</Text>
-            </View>
-            <View style={styles.instructionStep}>
-              <Text style={styles.instructionStepText}>{step}</Text>
-              {ingredientsId && ingredientsId.length > 0 ? (
-                ingredientsId.map((ingredient, i) => (
-                  <Text key={i} style={styles.ingredientText}>
-                    {ingredient}
-                  </Text>
-                ))
-              ) : (
-                <Text style={styles.emptyText}>No ingredient</Text>
-              )}
-            </View>
-          </View>
-        ))
-      ) : (
-        <Text style={styles.emptyText}>No instruction listed</Text>
-      )}
+    <View style={{ flex: 1, backgroundColor: Colors.bodybgColor }}>
+      <FlatList
+        data={instructions}
+        keyExtractor={(item, index) => `${item}-${index}`}
+        renderItem={renderInstructionStep}
+        ListEmptyComponent={
+          <Text style={styles.emptyText}>No instruction listed</Text>
+        }
+      />
     </View>
   );
 };
 
-
 const Tab = createMaterialTopTabNavigator();
+//Meal Detail Component
 const MealDetail = ({ route, navigation }) => {
+  const [bookmark, setBookMark] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const favoriteCtx = useContext(FavouriteContext);
+  useEffect(() => {
+    if (mealId) {
+      renderBookMark(mealId);
+    }
+  }, [mealId]);
+
+  const mealId = route?.params?.id;
+  if (!mealId) {
+    console.error("Meal ID is undefined. Check Navigation Paramseters");
+    return null;
+  }
+  const ALLMEALS = ALL_MEALS.find((meal) => meal.id === mealId);
+  const isFavorite = favoriteCtx.ids.includes(mealId);
+  function changeFavoriteStatusHandler() {
+    console.log("Meal ID:" + mealId);
+    console.log("Is Favorite Before Change:", isFavorite);
+    console.log("New Favorite Added!");
+    if (isFavorite) {
+      favoriteCtx.removeFavorite(mealId);
+    } else {
+      favoriteCtx.addFavorite(mealId);
+    }
+
+    console.log("Favorite IDs After Change:", favoriteCtx.ids);
+  }
+  function openMenuModal() {
+    setModalVisible(true);
+    console.log("Modal Menu Opened");
+  }
+  async function addBookmark(ItemId) {
+    try {
+      const token = await AsyncStorage.getItem("bookmark");
+      let bookmarks = token ? JSON.parse(token) : [];
+      if (!bookmarks.includes(ItemId)) {
+        bookmarks.push(ItemId);
+        await AsyncStorage.setItem("bookmark", JSON.stringify(bookmarks));
+        Alert.alert(
+          `Great Choice! \u{1F44D}`,
+          "This meal has been added to your favorites!"
+        );
+        setBookMark(true);
+      } else {
+        console.log("Meal is already bookmarked:", ItemId);
+      }
+    } catch (error) {
+      console.error("Error adding bookmark:", error);
+    }
+  }
+
+  async function removeBookmark(ItemId) {
+    try {
+      const token = await AsyncStorage.getItem("bookmark");
+      let bookmarks = token ? JSON.parse(token) : [];
+      bookmarks = bookmarks.filter((id) => id !== ItemId); // Remove the item
+      await AsyncStorage.setItem("bookmark", JSON.stringify(bookmarks));
+      Alert.alert(
+        `Meal Removed`,
+        "This meal has been removed from your favorites."
+      );
+      setBookMark(false); // Update state
+    } catch (error) {
+      console.error("Error removing bookmark:", error);
+    }
+  }
+
+  async function renderBookMark(ItemId) {
+    try {
+      const token = await AsyncStorage.getItem("bookmark");
+      const bookmarks = token ? JSON.parse(token) : [];
+      const isBookmarked = bookmarks.includes(ItemId);
+      console.log(`Meal ${ItemId} is bookmarked:`, isBookmarked);
+      setBookMark(isBookmarked);
+    } catch (error) {
+      console.error("Error rendering bookmark:", error);
+    }
+  }
+
   const {
     id,
     title,
@@ -100,10 +220,24 @@ const MealDetail = ({ route, navigation }) => {
     description,
     tags,
   } = route.params;
-
+  const numberOfInstructions = instructions ? instructions.length : 0;
   function goBack() {
     navigation.goBack();
   }
+
+  function startCooking() {
+    console.log("Started Cooking");
+    navigation.navigate("CookingInstructionScreen", {
+      instructions,
+      numberOfInstructions,
+      ingredientsPerStep: ingredientsId, // Pass ingredient list per step
+    });
+    console.log(
+      "numberOfInstructions before navigating:",
+      numberOfInstructions
+    );
+  }
+
   console.log("number of servings:" + numOfServings);
   console.log("cookware:" + cookware);
   console.log("Route Params:" + route.params);
@@ -112,9 +246,13 @@ const MealDetail = ({ route, navigation }) => {
       <View style={styles.cookedStatus}>
         <View style={styles.cookedStatusContent}>
           <Pressable style={[styles.cookedStatusBtn, styles.cooked]}>
+            <FontAwesome6 name="circle-check" size={22} color="#999999" />
             <Text style={styles.cooked_text}>Cooked?</Text>
           </Pressable>
-          <Pressable style={[styles.cookedStatusBtn, styles.startCooking]}>
+          <Pressable
+            style={[styles.cookedStatusBtn, styles.startCooking]}
+            onPress={startCooking}
+          >
             <Text style={styles.startCooking_text}>Start Cooking</Text>
           </Pressable>
         </View>
@@ -125,7 +263,7 @@ const MealDetail = ({ route, navigation }) => {
           <Pressable style={styles.icon} onPress={goBack}>
             <AntDesign name="arrowleft" size={24} color="black" />
           </Pressable>
-          <Pressable style={styles.icon}>
+          <Pressable style={styles.icon} onPress={openMenuModal}>
             <Entypo
               name="dots-three-horizontal"
               size={24}
@@ -138,8 +276,16 @@ const MealDetail = ({ route, navigation }) => {
       <View style={styles.content}>
         <View style={styles.content_header}>
           <Text style={styles.title}>{title}</Text>
-          <Pressable>
-            <MaterialIcons name="favorite-outline" size={24} color="black" />
+          <Pressable
+            onPress={() => {
+              bookmark ? removeBookmark(mealId) : addBookmark(mealId);
+            }}
+          >
+            <MaterialIcons
+              name={bookmark ? "favorite" : "favorite-outline"}
+              size={24}
+              color={bookmark ? Colors.mealTimePrimary : "black"}
+            />
           </Pressable>
         </View>
         <View style={styles.meal_info}>
@@ -174,6 +320,114 @@ const MealDetail = ({ route, navigation }) => {
           </Tab.Navigator>
         </View>
       </View>
+
+      <Modal transparent={true} visible={modalVisible} animationType="slide">
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "flex-end",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+          }}
+        >
+          <View
+            style={{
+              backgroundColor: "white",
+              borderTopLeftRadius: 20,
+              borderTopRightRadius: 20,
+              padding: 20,
+            }}
+          >
+            <TouchableOpacity
+              onPress={() => setModalVisible(false)}
+              style={{ alignSelf: "flex-end", padding: 10 }}
+            >
+              <Text style={{ fontSize: 18 }}>✖</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                paddingVertical: 15,
+                borderBottomWidth: 1,
+                borderBottomColor: "#ddd",
+              }}
+            >
+              <View style={styles.modal_content}>
+              <AntDesign name="exclamationcircleo" size={18} color="#999999" />
+                <Text style={styles.modalText}>Nutrition Facts</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                paddingVertical: 15,
+                borderBottomWidth: 1,
+                borderBottomColor: "#ddd",
+              }}
+            >
+              <View style={styles.modal_content}>
+                <MaterialCommunityIcons
+                  name="timer-settings-outline"
+                  size={24}
+                  color="#999999"
+                />
+                <Text style={styles.modalText}>Open Cooking Mode</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                paddingVertical: 15,
+                borderBottomWidth: 1,
+                borderBottomColor: "#ddd",
+              }}
+            >
+              <View style={styles.modal_content}>
+              <FontAwesome name="sticky-note-o" size={24} color="#999999" />
+                <Text style={styles.modalText}>Add Notes</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                paddingVertical: 15,
+                borderBottomWidth: 1,
+                borderBottomColor: "#ddd",
+              }}
+            >
+              <View style={styles.modal_content}>
+              <FontAwesome name="mail-forward" size={24} color="#999999" />
+                <Text style={styles.modalText}>Share</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                paddingVertical: 15,
+                borderBottomWidth: 1,
+                borderBottomColor: "#ddd",
+              }}
+            >
+              <View style={styles.modal_content}>
+              <Ionicons name="print-outline" size={24} color="#999999" />
+                <Text style={styles.modalText}>Print</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                paddingVertical: 15,
+                borderBottomWidth: 1,
+                borderBottomColor: "#ddd",
+              }}
+            >
+              <View style={styles.modal_content}>
+              <FontAwesome name="commenting-o" size={24} color="#999999" />
+                <Text style={styles.modalText}>Feedback For The Chef</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={{ paddingVertical: 15, }}>
+              <View style={styles.modal_content}>
+              <Feather name="folder-plus" size={24} color="#999999" />
+                <Text style={styles.modalText}>Add To Collections</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -294,7 +548,11 @@ const styles = StyleSheet.create({
   },
   cooked: {
     width: "40%",
-    borderColor: "#666666",
+    borderColor: "#999999",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    borderWidth: 1,
   },
   cooked_text: {
     fontWeight: "bold",
@@ -322,12 +580,12 @@ const styles = StyleSheet.create({
     marginVertical: 4,
   },
   ingredientQty: {
-    fontSize: 15,
+    fontSize: 16,
+    fontWeight: "400",
     color: "#666",
-    paddingVertical: 10,
-    marginVertical: 4,
-    borderBottomColor: "#cccccc",
+    textAlign: "right", // Align quantities to the right
   },
+
   instructionStep: {
     // fontSize: 16,
     // marginBottom: 10,
@@ -340,6 +598,10 @@ const styles = StyleSheet.create({
     // borderColor: "pink",
     width: "95%",
     flexWrap: "wrap",
+  },
+  ingredientList: {
+    marginTop: 10,
+    paddingLeft: 20,
   },
   instructionStepText: {
     fontSize: 20,
@@ -373,7 +635,16 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 40,
   },
-  ingredientText:{
-    color:'red'
-  }
+  ingredientText: {
+    color: "red",
+  },
+  //MODAL
+  modalText: {
+    fontWeight: "bold",
+    marginLeft: 10,
+  },
+  modal_content: {
+    flexDirection: "row",
+    alignItems:'center'
+  },
 });

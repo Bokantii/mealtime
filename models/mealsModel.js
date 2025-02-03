@@ -1,5 +1,3 @@
-
-
 class Meal {
   constructor(
     id,
@@ -9,6 +7,7 @@ class Meal {
     numOfServings,
     ingredientsId,
     ingredientQtyId,
+    numberOfInstructions,
     cookware,
     instructions,
     isPro,
@@ -23,6 +22,7 @@ class Meal {
     this.numOfServings = numOfServings;
     this.ingredientsId = ingredientsId;
     this.ingredientQtyId = ingredientQtyId;
+    this.numberOfInstructions = numberOfInstructions;
     this.cookware = cookware;
     this.instructions = instructions;
     this.isPro = isPro;

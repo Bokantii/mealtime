@@ -9,6 +9,7 @@ export const RECOMMENDED_SNACKS = [
     2, // Serves 2
     ["cauliflower", "olive oil", "paprika", "garlic powder", "salt", "pepper"],
     ["1 head", "2 tbsp", "1 tsp", "1 tsp", "to taste", "to taste"],
+    5, // Number of instructions
     ["knife", "baking sheet"],
     [
       "Preheat oven to 400°F (200°C).",
@@ -30,6 +31,7 @@ export const RECOMMENDED_SNACKS = [
     4, // Serves 4
     ["chicken thighs", "yogurt", "tandoori spice mix", "naan bread", "lemon"],
     ["500g", "1 cup", "2 tbsp", "4", "1"],
+    5, // Number of instructions
     ["mixing bowl", "oven"],
     [
       "In a mixing bowl, combine yogurt and tandoori spice mix.",
@@ -51,6 +53,7 @@ export const RECOMMENDED_SNACKS = [
     4, // Serves 4
     ["shrimp", "butter", "garlic", "lemon", "parsley", "pasta or bread"],
     ["500g", "2 tbsp", "2 cloves", "1", "2 tbsp", "to serve"],
+    5, // Number of instructions
     ["skillet", "knife"],
     [
       "Heat butter in a skillet over medium heat.",

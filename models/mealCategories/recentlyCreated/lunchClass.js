@@ -9,13 +9,16 @@ export const RECENTLY_CREATED_LUNCH = [
     4,
     ["chicken-thighs", "pita-bread", "tzatziki-sauce", "lettuce", "tomatoes"],
     ["500g", "4 pieces", "1 cup", "1 cup", "2 medium"],
+    7, // Updated number of instructions
     ["grill", "mixing-bowl", "knife"],
     [
-      "Grill the chicken thighs until fully cooked and tender.",
-      "Slice the lettuce and tomatoes into thin strips.",
-      "Warm the pita bread on a grill or pan.",
-      "Assemble the gyro by layering chicken, tzatziki, lettuce, and tomatoes in the pita bread.",
-      "Fold and serve immediately."
+      "Season the chicken thighs with salt, pepper, and your choice of Greek seasoning.",
+      "Preheat the grill to medium heat and cook the chicken for 6-8 minutes per side until fully cooked.",
+      "While the chicken cooks, wash and slice the lettuce and tomatoes into thin strips.",
+      "Once the chicken is done, let it rest for 5 minutes, then slice it into thin strips.",
+      "Warm the pita bread on the grill or in a pan for about 30 seconds per side.",
+      "Assemble the gyro by spreading tzatziki sauce inside the pita, then adding the sliced chicken, lettuce, and tomatoes.",
+      "Fold and serve immediately with extra tzatziki sauce on the side."
     ],
     false,
     "Lunch",
@@ -30,14 +33,17 @@ export const RECENTLY_CREATED_LUNCH = [
     6,
     ["pork-ribs", "bbq-sauce", "cornmeal", "buttermilk", "eggs"],
     ["1.5kg", "1 cup", "1 cup", "1 cup", "2"],
+    8, // Updated number of instructions
     ["oven", "mixing-bowl", "baking-pan"],
     [
       "Preheat the oven to 350°F (175°C).",
-      "Generously coat the ribs with BBQ sauce and place them on a baking pan.",
-      "Bake for 1.5 hours, basting occasionally with more BBQ sauce.",
-      "In a bowl, mix cornmeal, buttermilk, and eggs to make the cornbread batter.",
-      "Bake the cornbread in a greased pan for 25 minutes or until golden brown.",
-      "Serve the tender ribs with a slice of warm cornbread."
+      "Rub the ribs generously with salt, pepper, and your favorite BBQ seasoning.",
+      "Coat the ribs with BBQ sauce and place them on a foil-lined baking pan.",
+      "Cover the ribs with foil and bake for 1.5 hours, basting with more BBQ sauce every 30 minutes.",
+      "While the ribs bake, prepare the cornbread by mixing cornmeal, buttermilk, and eggs in a bowl.",
+      "Pour the cornbread batter into a greased baking pan and bake for 25 minutes or until golden brown.",
+      "Once the ribs are tender, remove the foil and broil for 5 minutes to caramelize the BBQ sauce.",
+      "Serve the ribs hot with a slice of warm cornbread on the side."
     ],
     true,
     "Lunch",
@@ -52,13 +58,15 @@ export const RECENTLY_CREATED_LUNCH = [
     2,
     ["chicken-breast", "avocado", "lettuce", "pomegranate-seeds", "olive-oil"],
     ["2 pieces", "1 large", "2 cups", "1/4 cup", "2 tbsp"],
+    6, // Updated number of instructions
     ["grill", "mixing-bowl", "knife"],
     [
-      "Grill the chicken breasts until fully cooked and slice them into strips.",
-      "Slice the avocado into thin slices and prepare the lettuce.",
-      "In a bowl, combine chicken, avocado, lettuce, and pomegranate seeds.",
-      "Drizzle the salad with olive oil and gently toss to combine.",
-      "Serve fresh and enjoy the vibrant flavors."
+      "Season the chicken breasts with salt, pepper, and a drizzle of olive oil.",
+      "Grill the chicken over medium heat for 5-7 minutes per side until fully cooked.",
+      "Allow the grilled chicken to rest for 5 minutes, then slice into thin strips.",
+      "Cut the avocado in half, remove the pit, and slice into thin wedges.",
+      "In a large bowl, combine the lettuce, pomegranate seeds, sliced avocado, and grilled chicken.",
+      "Drizzle with olive oil, toss gently, and serve immediately."
     ],
     false,
     "Lunch",
@@ -73,13 +81,16 @@ export const RECENTLY_CREATED_LUNCH = [
     4,
     ["pasta", "shrimp", "olive-oil", "spinach", "cherry-tomatoes"],
     ["2 cups", "300g", "2 tbsp", "2 cups", "1 cup"],
+    7, // Updated number of instructions
     ["pot", "grill", "mixing-bowl"],
     [
-      "Cook pasta according to the package instructions, drain, and let cool.",
-      "Grill the shrimp until they turn pink and are fully cooked.",
-      "In a bowl, toss the cooked pasta with spinach, cherry tomatoes, and grilled shrimp.",
-      "Drizzle with olive oil and mix gently to coat all the ingredients.",
-      "Serve chilled or at room temperature."
+      "Bring a pot of salted water to a boil and cook the pasta according to the package instructions. Drain and let cool.",
+      "Meanwhile, peel and devein the shrimp if necessary.",
+      "Drizzle the shrimp with olive oil and season with salt, pepper, and a dash of garlic powder.",
+      "Grill the shrimp over medium heat for 2-3 minutes per side until pink and opaque.",
+      "In a large mixing bowl, combine the cooked pasta, fresh spinach, and cherry tomatoes.",
+      "Add the grilled shrimp and drizzle with extra olive oil.",
+      "Toss everything gently and serve the pasta salad chilled or at room temperature."
     ],
     false,
     "Lunch",

@@ -7,6 +7,8 @@ import {
   Animated,
   Image,
   ScrollView,
+  Alert,
+  TextInput,
 } from "react-native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Modal, FlatList } from "react-native";
@@ -17,19 +19,24 @@ import Button from "../../components/ui/Button";
 import { Colors } from "../../util/Colors";
 import { BlurView } from "expo-blur";
 import Card from "../../components/ui/Card";
-import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer } from "@react-navigation/native";
-import FlatListView from "../../components/ui/FlatListView";
-import { MOST_POPULAR_DINNER } from "../../models/mealCategories/mostPopular/dinnerClass";
 import { RECENTLY_CREATED_BREAKFAST } from "../../models/mealCategories/recentlyCreated/breakfastClass";
 import { RECOMMENDED_PLAN_BREAKFAST } from "../../models/mealCategories/recommendedPlan/breakfastClass";
 import { MOST_POPULAR_BREAKFAST } from "../../models/mealCategories/mostPopular/breakfastClass";
 import { MOST_POPULAR_SNACKS } from "../../models/mealCategories/mostPopular/snackClass";
+import { ALL_MEALS } from "../../data/ALLMEALS";
 import ScrollViewUI from "../../components/ui/ScrollViewUI";
 import { mealContext } from "../../store/meals-context";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import { MOST_POPULAR_LUNCH } from "../../models/mealCategories/mostPopular/lunchClass";
 
 const Meals = () => {
+  const addToMealPlan = () => {
+    Alert.alert(
+      `Great Choice! \u{1F44D} `,
+      "This meal has been added to your meal plan!"
+    );
+    console.log("Added to meal plan!");
+  };
   const renderCard = ({ item }) => {
     return (
       <Card
@@ -46,7 +53,7 @@ const Meals = () => {
         mealCategory={item.mealCategory}
         description={item.description}
         tags
-        onPress={navToDetails}
+        onPress={addToMealPlan}
       />
     );
   };
@@ -58,9 +65,19 @@ const Meals = () => {
   function navToDetails() {
     navigation.navigate("MealDetail");
   }
+  const filteredMeals = ALL_MEALS.filter((meal) => {
+    meal.title.includes(searchQuery);
+  });
+  const searchMeal = () => {
+    setShowSearch(!showSearch);
+  };
   const [isPopoverVisible, setIsPopoverVisible] = useState(true);
   const { hasMealPlan } = useContext(AuthContext);
+  //SEARCH GALLERY START
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showSearch, setShowSearch] = useState(false);
 
+  //SEARCH GALLERY END
   useEffect(() => {
     if (isPopoverVisible) {
       Animated.timing(fadeAnim, {
@@ -88,12 +105,33 @@ const Meals = () => {
     navigation.goBack();
     console.log("Navigating home...");
   };
-
+ 
   return (
     <View style={styles.container}>
-      <Pressable onPress={navigateHome} style={{ marginTop: 10 }}>
-        <FontAwesome name="times" size={24} color="black" />
-      </Pressable>
+      <View style={styles.headerIcons}>
+        <Pressable onPress={navigateHome} style={{ marginTop: 10 }}>
+          <FontAwesome name="times" size={24} color="black" />
+        </Pressable>
+        <Pressable onPress={searchMeal}>
+          <AntDesign name="search1" size={24} color="black" />
+        </Pressable>
+      </View>
+      {showSearch && (
+        <TextInput
+          style={{
+            borderWidth: 1,
+            borderColor:'#ddd',
+            padding: 18,
+            borderRadius: 5,
+            marginTop: 10,
+            backgroundColor:'white'
+          }}
+          placeholder="Search meals..."
+          value={searchQuery}
+          onChangeText={setSearchQuery}
+        />
+      )}
+
       <Text style={styles.title}>Build a meal plan</Text>
       <View style={styles.content}>
         <ScrollViewUI
@@ -111,6 +149,7 @@ const Meals = () => {
           navScreen2={"RecentlyCreatedMealsTabs"}
           navScreen3={"RecommendedPlanTabs"}
           mealTime="Meals"
+          searchQuery={searchQuery}
         />
       </View>
 
@@ -164,6 +203,12 @@ const styles = StyleSheet.create({
   content: {
     marginTop: 60,
     flex: 1,
+  },
+  headerIcons: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginTop:25,
   },
   title: {
     fontSize: 30,

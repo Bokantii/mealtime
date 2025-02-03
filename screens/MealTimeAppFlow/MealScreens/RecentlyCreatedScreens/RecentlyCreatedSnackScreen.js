@@ -4,7 +4,7 @@ import FlatListVertical from "../../../../components/ui/FlatListVertical";
 import { RECENTLY_CREATED_SNACKS } from "../../../../models/mealCategories/recentlyCreated/snackClass";
 import Card from "../../../../components/ui/Card";
 import { Colors } from "../../../../util/Colors";
-const MostPopularBreakFastScreen = () => {
+const MostPopularBreakFastScreen = ({searchQuery}) => {
   const renderCard = ({ item }) => {
     return (
       <Card
@@ -33,6 +33,7 @@ const MostPopularBreakFastScreen = () => {
         renderItem={renderCard}
         title={"Recently Created"}
         numColumns={2}
+        searchQuery={searchQuery}
       />
     </View>
   );

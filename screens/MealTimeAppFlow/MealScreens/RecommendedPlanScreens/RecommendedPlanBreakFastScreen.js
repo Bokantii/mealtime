@@ -4,7 +4,7 @@ import FlatListVertical from "../../../../components/ui/FlatListVertical";
 import { RECOMMENDED_PLAN_BREAKFAST } from "../../../../models/mealCategories/recommendedPlan/breakfastClass";
 import Card from "../../../../components/ui/Card";
 import { Colors } from "../../../../util/Colors";
-const RecommendedPlanBreakFastScreen = () => {
+const RecommendedPlanBreakFastScreen = ({searchQuery}) => {
   const renderCard = ({ item }) => {
     return (
       <Card
@@ -33,6 +33,7 @@ const RecommendedPlanBreakFastScreen = () => {
         renderItem={renderCard}
         title={"Recommended Plan"}
         numColumns={2}
+        searchQuery={searchQuery}
       />
     </View>
   );

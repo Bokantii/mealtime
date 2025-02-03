@@ -9,6 +9,7 @@ export const MOST_POPULAR_DESSERTS = [
     8,
     ["flour", "cocoa-powder", "eggs", "butter", "sugar"],
     ["2 cups", "1 cup", "3", "200g", "1.5 cups"],
+    5, 
     ["oven", "mixing-bowl", "cake-pan"],
     [
       "Preheat your oven to 350°F (175°C) and grease a cake pan.",
@@ -30,6 +31,7 @@ export const MOST_POPULAR_DESSERTS = [
     6,
     ["ladyfingers", "mascarpone", "coffee", "cocoa-powder", "sugar"],
     ["200g", "250g", "1 cup", "2 tbsp", "1/2 cup"],
+    4, 
     ["mixing-bowl", "whisk", "serving-dish"],
     [
       "Brew a cup of strong coffee and let it cool. Dip the ladyfingers into the coffee, making sure they are moist but not soggy.",
@@ -50,6 +52,7 @@ export const MOST_POPULAR_DESSERTS = [
     6,
     ["apples", "flour", "butter", "sugar", "cinnamon"],
     ["5", "2 cups", "200g", "1 cup", "1 tsp"],
+    4, 
     ["oven", "rolling-pin", "pie-dish"],
     [
       "Preheat your oven to 375°F (190°C). Peel and slice the apples, then toss them with sugar and cinnamon in a mixing bowl.",
@@ -70,6 +73,7 @@ export const MOST_POPULAR_DESSERTS = [
     8,
     ["cream-cheese", "sugar", "eggs", "graham-crackers", "butter"],
     ["500g", "1 cup", "3", "1 cup", "100g"],
+    4, 
     ["springform-pan", "oven", "mixing-bowl"],
     [
       "Preheat your oven to 325°F (160°C). Crush graham crackers into fine crumbs and mix with melted butter to form the crust.",
@@ -90,6 +94,7 @@ export const MOST_POPULAR_DESSERTS = [
     4,
     ["cream", "gelatin", "sugar", "vanilla"],
     ["2 cups", "1 packet", "1/2 cup", "1 tsp"],
+    4, 
     ["saucepan", "molds", "spoon"],
     [
       "In a saucepan, heat the cream, sugar, and vanilla over medium heat, stirring occasionally until the sugar dissolves. Do not let it boil.",
@@ -110,6 +115,7 @@ export const MOST_POPULAR_DESSERTS = [
     6,
     ["bananas", "caramel", "whipped-cream", "graham-crackers"],
     ["3", "1 cup", "1 cup", "1.5 cups"],
+    3, 
     ["mixing-bowl", "spoon", "pie-dish"],
     [
       "Crush the graham crackers into crumbs and mix with melted butter to form the crust. Press into a pie dish and refrigerate for 10 minutes.",

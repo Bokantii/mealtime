@@ -9,11 +9,19 @@ export const MOST_POPULAR_DINNER = [
     4,
     ["chicken-breast", "lemon", "herbs", "vegetables"],
     ["500g", "1", "2 tbsp", "300g"],
+    3,
     ["grill-pan", "knife", "cutting-board"],
     [
-      "In a mixing bowl, combine lemon juice, herbs, and a pinch of salt and pepper. Marinate the chicken breasts in the mixture for at least 20 minutes.",
-      "Preheat a grill pan over medium heat and grill the chicken breasts for 6-8 minutes on each side, or until fully cooked.",
-      "While the chicken cooks, chop the vegetables and lightly grill them. Serve the chicken hot with the vegetables on the side."
+      "Pat the chicken breasts dry with paper towels.",
+      "In a bowl, mix lemon juice, herbs, salt, and pepper to create the marinade.",
+      "Coat the chicken with the marinade and let it sit for at least 20 minutes.",
+      "Preheat a grill pan over medium heat for 5 minutes.",
+      "Place the chicken on the grill and cook for 6-8 minutes per side.",
+      "While the chicken cooks, wash and chop the vegetables into bite-sized pieces.",
+      "Lightly coat the vegetables with olive oil and season with salt and pepper.",
+      "Grill the vegetables for 3-5 minutes until slightly charred but still crisp.",
+      "Remove the chicken from the grill and let it rest for 5 minutes before slicing.",
+      "Serve hot with the grilled vegetables on the side."
     ],
     false,
     "Dinner",
@@ -28,12 +36,20 @@ export const MOST_POPULAR_DINNER = [
     4,
     ["spaghetti", "ground-beef", "tomato-sauce", "onion", "garlic"],
     ["400g", "500g", "200ml", "1", "2 cloves"],
+    4,
     ["pot", "pan", "strainer"],
     [
-      "Boil a large pot of salted water and cook the spaghetti until al dente. Drain and set aside.",
-      "In a pan, heat oil and sauté finely chopped onion and garlic until fragrant. Add the ground beef and cook until browned.",
-      "Pour in the tomato sauce and let it simmer for 10-15 minutes. Season with salt, pepper, and herbs if desired.",
-      "Combine the sauce with the spaghetti and toss well before serving."
+      "Bring a large pot of salted water to a rolling boil.",
+      "Add the spaghetti and cook according to package instructions.",
+      "Drain the pasta and toss with a little olive oil to prevent sticking.",
+      "Finely chop the onion and mince the garlic.",
+      "In a large pan, heat oil and sauté the onion and garlic until soft and fragrant.",
+      "Add the ground beef, breaking it apart as it cooks, until browned.",
+      "Drain excess fat from the pan if needed.",
+      "Pour in the tomato sauce and stir well.",
+      "Let the sauce simmer on low heat for 15 minutes, stirring occasionally.",
+      "Season with salt, pepper, and Italian herbs to taste.",
+      "Combine the sauce with the spaghetti, toss well, and serve with grated Parmesan cheese."
     ],
     false,
     "Dinner",
@@ -48,12 +64,19 @@ export const MOST_POPULAR_DINNER = [
     4,
     ["beef", "mushrooms", "sour-cream", "onion", "butter"],
     ["500g", "200g", "150ml", "1", "2 tbsp"],
+    4,
     ["pan", "knife", "spoon"],
     [
       "Slice the beef into thin strips and season with salt and pepper.",
-      "In a pan, melt butter and cook the beef until browned. Remove and set aside.",
-      "In the same pan, sauté sliced mushrooms and chopped onion until tender. Add the beef back in.",
-      "Stir in sour cream and let it simmer for 5-7 minutes. Serve hot over rice or pasta."
+      "Heat butter in a large pan over medium-high heat.",
+      "Sear the beef until browned on all sides. Remove and set aside.",
+      "Slice the mushrooms and finely chop the onion.",
+      "In the same pan, add more butter and sauté the onions until translucent.",
+      "Add the mushrooms and cook until softened.",
+      "Return the beef to the pan and stir everything together.",
+      "Lower the heat and stir in the sour cream until well combined.",
+      "Let the mixture simmer for 5-7 minutes, stirring occasionally.",
+      "Adjust seasoning if needed and serve hot over cooked rice or pasta."
     ],
     true,
     "Dinner",
@@ -68,11 +91,19 @@ export const MOST_POPULAR_DINNER = [
     3,
     ["noodles", "bok-choy", "mushrooms", "soy-sauce", "sesame-oil"],
     ["300g", "2 cups", "1 cup", "2 tbsp", "1 tbsp"],
+    3,
     ["wok", "spatula", "knife"],
     [
-      "Cook the noodles according to package instructions and set aside.",
-      "In a wok, heat sesame oil and stir-fry chopped bok choy and mushrooms for 3-5 minutes.",
-      "Add the cooked noodles and soy sauce to the wok. Stir-fry for another 2-3 minutes until everything is well combined and heated through. Serve hot."
+      "Boil a pot of water and cook the noodles according to package instructions.",
+      "Drain and rinse the noodles under cold water to prevent sticking.",
+      "Chop the bok choy and slice the mushrooms.",
+      "Heat sesame oil in a wok over medium-high heat.",
+      "Add the mushrooms and bok choy, stirring frequently for 3-5 minutes.",
+      "Pour in the soy sauce and mix well.",
+      "Add the cooked noodles to the wok and toss everything together.",
+      "Stir-fry for another 2-3 minutes until the noodles are well coated.",
+      "Taste and adjust seasoning if needed.",
+      "Serve hot with sesame seeds or green onions as garnish."
     ],
     false,
     "Dinner",
@@ -87,34 +118,18 @@ export const MOST_POPULAR_DINNER = [
     2,
     ["salmon-fillet", "butter", "garlic", "lemon", "parsley"],
     ["2 fillets", "3 tbsp", "2 cloves", "1", "1 tbsp"],
+    3,
     ["oven", "baking-dish", "knife"],
     [
-      "Preheat your oven to 375°F (190°C). Melt the butter in a small saucepan and mix with minced garlic and lemon juice.",
+      "Preheat your oven to 375°F (190°C).",
+      "Melt the butter in a small saucepan and mix with minced garlic and lemon juice.",
       "Place the salmon fillets in a baking dish and pour the garlic butter mixture over them.",
-      "Bake for 15-20 minutes or until the salmon is cooked through. Garnish with parsley before serving."
+      "Bake for 15-20 minutes or until the salmon is cooked through.",
+      "Garnish with parsley before serving."
     ],
     true,
     "Dinner",
     "Delicious salmon baked with garlic and butter.",
     ["Healthy", "Seafood", "Quick"]
-  ),
-  new Meal(
-    "6",
-    "Classic Meatloaf with Mashed Potatoes",
-    "https://media.istockphoto.com/id/1456907397/photo/meatloaf-portion-on-a-plate-served-with-mashed-potatoes.webp?a=1&b=1&s=612x612&w=0&k=20&c=F1_BX9nO6BTnp2k7ldasPzzbQvulV5Dsl7KZBW2mbGQ=",
-    70,
-    6,
-    ["ground-beef", "breadcrumbs", "egg", "potatoes", "milk", "butter"],
-    ["500g", "1 cup", "1", "1kg", "100ml", "3 tbsp"],
-    ["oven", "mixing-bowl", "potato-masher"],
-    [
-      "Preheat your oven to 350°F (175°C). In a mixing bowl, combine ground beef, breadcrumbs, and egg. Mix well and shape into a loaf.",
-      "Place the loaf in a baking dish and bake for 45-50 minutes.",
-      "Meanwhile, boil potatoes until soft, then mash with butter and milk. Serve the meatloaf sliced with mashed potatoes on the side."
-    ],
-    false,
-    "Dinner",
-    "Hearty meatloaf served with creamy mashed potatoes.",
-    ["Comfort Food", "Classic", "Family"]
   )
 ];

@@ -9,15 +9,18 @@ export const RECOMMENDED_DINNER = [
     4, // Serves 4
     ["chicken", "mixed-vegetables", "pie-crust", "cream", "butter", "flour"], // Ingredient IDs
     ["2 cups", "1 cup", "1 crust", "1 cup", "2 tbsp", "2 tbsp"], // Ingredient quantities
+    9, // Updated number of instructions
     ["mixing-bowl", "rolling-pin", "oven"], // Cookware needed
     [
       "Preheat the oven to 375°F (190°C).",
-      "In a saucepan, melt butter and stir in flour to create a roux. Gradually add cream, stirring constantly until a thick sauce forms.",
-      "Add cooked chicken and mixed vegetables to the sauce, mixing well.",
-      "Roll out the pie crust and place it in a baking dish. Fill with the chicken mixture.",
-      "Cover with the top crust, seal the edges, and cut small slits for ventilation.",
-      "Bake for 35-40 minutes until the crust is golden brown.",
-      "Let cool slightly before serving."
+      "In a saucepan, melt butter over medium heat. Once melted, add flour and whisk continuously for 1-2 minutes to form a roux.",
+      "Gradually add cream while stirring constantly until the sauce thickens and becomes smooth.",
+      "Add cooked, shredded chicken and mixed vegetables to the sauce, stirring well to combine.",
+      "Roll out the pie crust and place it into a greased baking dish. Trim any excess dough.",
+      "Fill the crust with the creamy chicken and vegetable mixture, spreading evenly.",
+      "Cover with the top pie crust, pressing the edges together to seal. Cut small slits on top to allow steam to escape.",
+      "Bake for 35-40 minutes or until the crust turns golden brown.",
+      "Let the pie cool for at least 10 minutes before slicing and serving."
     ], // Instructions
     false, // Not Pro-only
     "Dinner", // Meal category
@@ -32,14 +35,17 @@ export const RECOMMENDED_DINNER = [
     4, // Serves 4
     ["beef-slices", "broccoli", "soy-sauce", "ginger", "garlic", "cornstarch"], // Ingredient IDs
     ["500g", "2 cups", "1/4 cup", "1 tsp", "2 cloves", "1 tbsp"], // Ingredient quantities
+    8, // Updated number of instructions
     ["wok", "spatula"], // Cookware needed
     [
-      "Heat oil in a wok over high heat and cook beef slices until browned. Remove and set aside.",
-      "In the same wok, stir-fry broccoli, garlic, and ginger for 2-3 minutes.",
-      "Mix soy sauce and cornstarch with water to create a slurry.",
-      "Return beef to the wok and pour the slurry over the mixture.",
-      "Cook, stirring constantly, until the sauce thickens and coats the beef and broccoli.",
-      "Serve hot over steamed rice or noodles."
+      "Thinly slice the beef into bite-sized strips and season with a pinch of salt and pepper.",
+      "In a small bowl, mix soy sauce and cornstarch with 1/4 cup water to create a slurry.",
+      "Heat oil in a wok over high heat and stir-fry the beef slices for 2-3 minutes until browned. Remove from wok and set aside.",
+      "In the same wok, add more oil if needed and stir-fry minced garlic and grated ginger for 30 seconds until fragrant.",
+      "Add the broccoli florets and stir-fry for another 2-3 minutes until they are slightly tender but still bright green.",
+      "Return the cooked beef to the wok and pour the soy sauce-cornstarch slurry over the mixture.",
+      "Stir constantly for 2-3 minutes until the sauce thickens and evenly coats the beef and broccoli.",
+      "Serve hot over steamed rice or noodles for a complete meal."
     ], // Instructions
     false, // Not Pro-only
     "Dinner", // Meal category
@@ -54,14 +60,17 @@ export const RECOMMENDED_DINNER = [
     4, // Serves 4
     ["gnocchi", "spinach", "cream", "parmesan-cheese", "butter", "garlic"], // Ingredient IDs
     ["500g", "2 cups", "1 cup", "1/2 cup", "2 tbsp", "2 cloves"], // Ingredient quantities
+    8, // Updated number of instructions
     ["saucepan", "mixing-bowl"], // Cookware needed
     [
-      "Cook gnocchi in boiling water according to package instructions. Drain and set aside.",
-      "In a saucepan, melt butter over medium heat and sauté minced garlic until fragrant.",
-      "Add spinach and cook until wilted.",
-      "Pour in cream and stir in parmesan cheese, allowing the sauce to thicken slightly.",
-      "Add cooked gnocchi to the saucepan and stir to coat with the sauce.",
-      "Cook for 2-3 minutes until heated through. Serve warm, garnished with additional parmesan if desired."
+      "Bring a large pot of salted water to a boil and cook the gnocchi according to the package instructions. Drain and set aside.",
+      "In a saucepan, melt butter over medium heat. Add minced garlic and sauté for 30 seconds until fragrant.",
+      "Add fresh spinach to the pan and cook until wilted, about 2 minutes.",
+      "Reduce heat to low and pour in the cream, stirring gently to combine with the spinach.",
+      "Slowly add grated parmesan cheese while stirring continuously, allowing the sauce to thicken slightly.",
+      "Gently fold in the cooked gnocchi, ensuring each piece is well coated with the creamy spinach sauce.",
+      "Cook for another 2-3 minutes, stirring occasionally, until the dish is heated through and the sauce reaches the desired consistency.",
+      "Serve warm, garnished with extra parmesan and freshly ground black pepper if desired."
     ], // Instructions
     true, // Pro-only
     "Dinner", // Meal category

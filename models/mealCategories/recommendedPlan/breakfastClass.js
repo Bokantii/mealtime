@@ -9,6 +9,7 @@ export const RECOMMENDED_PLAN_BREAKFAST = [
     2,
     ["bread", "eggs", "milk", "vanilla-extract", "mixed-berries", "butter", "maple-syrup"],
     ["4 slices", "2", "1/2 cup", "1 tsp", "1 cup", "As needed", "Optional"],
+    5, // Number of instructions
     ["frying-pan", "mixing-bowl"],
     [
       "Whisk eggs, milk, and vanilla extract in a mixing bowl until smooth.",
@@ -30,6 +31,7 @@ export const RECOMMENDED_PLAN_BREAKFAST = [
     1,
     ["chia-seeds", "milk", "honey", "vanilla-extract", "toppings"],
     ["1/4 cup", "1 cup", "1 tbsp", "1/2 tsp", "As desired"],
+    5, // Number of instructions
     ["jar", "spoon"],
     [
       "Combine chia seeds, milk, honey, and vanilla extract in a jar.",
@@ -51,6 +53,7 @@ export const RECOMMENDED_PLAN_BREAKFAST = [
     2,
     ["tortillas", "eggs", "cheese", "sausage", "bell-peppers", "butter"],
     ["2", "2", "1/4 cup", "1/4 cup", "1/4 cup", "1 tbsp"],
+    5, // Number of instructions
     ["frying-pan", "spatula"],
     [
       "Scramble the eggs in a pan and set aside.",
@@ -72,6 +75,7 @@ export const RECOMMENDED_PLAN_BREAKFAST = [
     4,
     ["eggs", "milk", "mushrooms", "spinach", "cheese", "salt", "pepper", "olive-oil"],
     ["6", "1/2 cup", "1 cup", "1 cup", "1/2 cup", "To taste", "To taste", "1 tbsp"],
+    7, // Number of instructions
     ["oven-safe-skillet", "oven"],
     [
       "Preheat oven to 375°F (190°C).",
@@ -95,6 +99,7 @@ export const RECOMMENDED_PLAN_BREAKFAST = [
     1,
     ["bread", "peanut-butter", "banana", "honey"],
     ["2 slices", "2 tbsp", "1", "Optional"],
+    4, // Number of instructions
     ["toaster", "knife"],
     [
       "Toast the bread slices until golden.",

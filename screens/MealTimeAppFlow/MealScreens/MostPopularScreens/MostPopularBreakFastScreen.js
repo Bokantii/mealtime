@@ -4,7 +4,9 @@ import FlatListVertical from "../../../../components/ui/FlatListVertical";
 import { MOST_POPULAR_BREAKFAST } from "../../../../models/mealCategories/mostPopular/breakfastClass";
 import Card from "../../../../components/ui/Card";
 import { Colors } from "../../../../util/Colors";
-const MostPopularBreakFastScreen = () => {
+import { useState } from "react";
+const MostPopularBreakFastScreen = ({searchQuery}) => {
+   
   const renderCard = ({ item }) => {
     return (
       <Card
@@ -33,6 +35,7 @@ const MostPopularBreakFastScreen = () => {
         renderItem={renderCard}
         title={"Most Popular"}
         numColumns={2}
+        searchQuery={searchQuery}
       />
     </View>
   );

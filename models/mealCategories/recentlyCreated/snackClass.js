@@ -9,6 +9,7 @@ export const RECENTLY_CREATED_SNACKS = [
     4,
     ["cabbage", "ground-beef", "rice", "tomato-sauce", "onion", "garlic"],
     ["1 large", "300g", "1 cup", "2 cups", "1 medium", "2 cloves"],
+    5, // Number of instructions
     ["pot", "mixing-bowl", "oven"],
     [
       "Boil the cabbage leaves in salted water until soft, about 5-7 minutes. Drain and let cool.",
@@ -30,6 +31,7 @@ export const RECENTLY_CREATED_SNACKS = [
     6,
     ["lasagna-noodles", "ricotta-cheese", "spinach", "zucchini", "marinara-sauce", "parmesan-cheese"],
     ["12 pieces", "1 cup", "2 cups", "1 cup", "3 cups", "1/2 cup"],
+    6, // Number of instructions
     ["baking-dish", "oven", "mixing-bowl"],
     [
       "Preheat oven to 375°F (190°C).",
@@ -52,6 +54,7 @@ export const RECENTLY_CREATED_SNACKS = [
     4,
     ["lentils", "spinach", "onion", "garlic", "vegetable-broth", "cumin"],
     ["1 cup", "2 cups", "1 medium", "2 cloves", "4 cups", "1 tsp"],
+    5, // Number of instructions
     ["pot", "stirring-spoon", "knife"],
     [
       "Heat a pot over medium heat and sauté finely chopped onion and minced garlic until fragrant.",

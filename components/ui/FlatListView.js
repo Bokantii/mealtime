@@ -8,79 +8,80 @@ const FlatListView = ({
   keyExtractor,
   horizontal,
   screenName,
-  navScreen
+  navScreen,
+  searchQuery,
 }) => {
   const navigation = useNavigation();
   function seeAll(navScreenName) {
     if (screenName) {
-      navigation.navigate( navScreenName, {
+      navigation.navigate(navScreenName, {
         screen: screenName,
       });
     }
   }
-  
+  const filteredMeal =
+    searchQuery.trim().length > 0
+      ? data.filter((meal) =>
+          meal.title.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+      : data;
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>{title}</Text>
         {screenName && navScreen && (
-          <Pressable onPress={()=>seeAll(navScreen)}>
+          <Pressable onPress={() => seeAll(navScreen)}>
             <Text style={styles.seeAll}>See All</Text>
           </Pressable>
         )}
       </View>
       {/* FlatList Section */}
-      {data && data.length > 0 ? (
+      {filteredMeal.length > 0 ? (
         <FlatList
-          data={data}
+          data={filteredMeal}
           renderItem={renderItem}
           keyExtractor={keyExtractor}
           horizontal={horizontal}
         />
       ) : (
-        <Text>No Items available</Text>
+        <Text style={{ textAlign: "center", color: "gray", marginTop: 10 }}>
+          No meals found.
+        </Text>
       )}
     </View>
   );
 };
 
-//Default Props
-// FlatListView.defaultProps = {
-//   horizontal: false,
-//   data: [],
-//   renderItem: () => null,
-//   keyExtractor: (item, index) => index.toString(),
-// };
-
 export default FlatListView;
 
 const styles = StyleSheet.create({
-    container: {
-      marginBottom: 20,
-    },
-    header: {
-      flexDirection: "row",
-      justifyContent: "space-between",
-      alignItems: "center",
-      paddingHorizontal: 10,
-      marginBottom: 10,
-    },
-    title: {
-      fontSize: 18,
-      fontWeight: "bold",
-    },
-    seeAll: {
-      fontSize: 14,
-      color: "#f58700",
-      textDecorationLine: "underline",
-    },
-    list: {
-      paddingHorizontal: 10,
-    },
-    emptyMessage: {
-      textAlign: "center",
-      color: "gray",
-      marginTop: 10,
-      fontSize: 16,
-    },
-  });
+  container: {
+    marginBottom: 20,
+  },
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 10,
+    marginBottom: 10,
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  seeAll: {
+    fontSize: 14,
+    color: "#f58700",
+    textDecorationLine: "underline",
+  },
+  list: {
+    paddingHorizontal: 10,
+  },
+  emptyMessage: {
+    textAlign: "center",
+    color: "gray",
+    marginTop: 10,
+    fontSize: 16,
+  },
+});

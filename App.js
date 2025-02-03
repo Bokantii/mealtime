@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -18,28 +17,14 @@ import Groceries from "./screens/MealTimeAppFlow/Groceries";
 import Meals from "./screens/MealTimeAppFlow/Meals";
 import Settings from "./screens/MealTimeAppFlow/Settings";
 import { MaterialIcons } from "@expo/vector-icons";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
-import MostPopularBreakFastScreen from "./screens/MealTimeAppFlow/MealScreens/MostPopularScreens/MostPopularBreakFastScreen";
-import MostPopularLunchScreen from "./screens/MealTimeAppFlow/MealScreens/MostPopularScreens/MostPopularLunchScreen";
-import MostPopularDinnerScreen from "./screens/MealTimeAppFlow/MealScreens/MostPopularScreens/MostPopularDinnerScreen";
-import MostPopularSnackScreen from "./screens/MealTimeAppFlow/MealScreens/MostPopularScreens/MostPopularSnackScreen";
-import MostPopularDessertScreen from "./screens/MealTimeAppFlow/MealScreens/MostPopularScreens/MostPopularDessertScreen";
-import RecentlyCreatedBreakFastScreen from "./screens/MealTimeAppFlow/MealScreens/RecentlyCreatedScreens/RecentlyCreatedBreakFastScreen";
-import RecentlyCreatedDessertScreen from "./screens/MealTimeAppFlow/MealScreens/RecentlyCreatedScreens/RecentlyCreatedDessertScreen";
-import RecentlyCreatedDinnerScreen from "./screens/MealTimeAppFlow/MealScreens/RecentlyCreatedScreens/RecentlyCreatedDinnerScreen";
-import RecentlyCreatedLunchScreen from "./screens/MealTimeAppFlow/MealScreens/RecentlyCreatedScreens/RecentlyCreatedLunchScreen";
-import RecentlyCreatedSnackScreen from "./screens/MealTimeAppFlow/MealScreens/RecentlyCreatedScreens/RecentlyCreatedSnackScreen";
-import RecommendedPlanBreakFastScreen from "./screens/MealTimeAppFlow/MealScreens/RecommendedPlanScreens/RecommendedPlanBreakFastScreen";
-import RecommendedPlanLunchScreen from "./screens/MealTimeAppFlow/MealScreens/RecommendedPlanScreens/RecommendedPlanLunchScreen";
-import RecommendedPlanDinnerScreen from "./screens/MealTimeAppFlow/MealScreens/RecommendedPlanScreens/RecommendedPlanDinnerScreen";
-import RecommendedPlanDessertScreen from "./screens/MealTimeAppFlow/MealScreens/RecommendedPlanScreens/RecommendedPlanDessertScreen";
-import RecommendedPlanSnackScreen from "./screens/MealTimeAppFlow/MealScreens/RecommendedPlanScreens/RecommendedPlanSnackScreen";
-import AntDesign from "@expo/vector-icons/AntDesign";
-import { Pressable } from "react-native";
 import MealDetail from "./screens/MealTimeAppFlow/MealDetail";
 import MostPopularTabs from "./screens/MealTimeAppFlow/Tabs/MostPopularTabs";
-
+import RecentlyCreatedMealsTabs from "./screens/MealTimeAppFlow/Tabs/RecentlyCreatedMealsTabs";
+import RecommendedPlanTabs from "./screens/MealTimeAppFlow/Tabs/RecommendedPlanTabs";
+import FavouriteContextProvider from "./store/favourites-context";
+import * as Notifications from "expo-notifications";
+import CookingInstructionScreen from "./screens/MealTimeAppFlow/CookingInstructions/CookingInstructionScreen";
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 function AuthStack() {
@@ -51,6 +36,7 @@ function AuthStack() {
         headerTintColor: "#fff",
         contentStyle: { backgroundColor: Colors.mealTimePrimary },
       }}
+      style={{ backgroundColor: Colors.bodybgColor }}
     >
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Signup" component={SignUp} />
@@ -72,14 +58,6 @@ function AuthenticatedStack() {
         name="TabNavigator"
         component={TabNavigator}
         options={{
-          // headerRight: ({ tintColor }) => (
-          //   <IconButton
-          //     icon={"log-out-outline"}
-          //     color={"black"}
-          //     size={24}
-          //     onPress={authCtx.logout}
-          //   />
-          // ),
           headerShown: false,
         }}
       />
@@ -91,8 +69,11 @@ function AuthenticatedStack() {
         }}
       />
       <Stack.Screen name="Meals" component={Meals} />
-      <Stack.Screen name="MealDetail" component={MealDetail}/>
-     
+      <Stack.Screen name="MealDetail" component={MealDetail} />
+      <Stack.Screen
+        name="CookingInstructionScreen"
+        component={CookingInstructionScreen}
+      />
       <Stack.Screen
         name="MostPopularTabs"
         component={MostPopularTabs}
@@ -218,139 +199,7 @@ const TabNavigator = () => {
     </Tab.Navigator>
   );
 };
-// function MyTabs({ route }) {
-//   const initialRouteName = route?.params?.initialRouteName || "Breakfast";
-//   return (
-//     <Tab.Navigator initialRouteName={initialRouteName}>
-//       <Tab.Screen name="Breakfast" component={BreakfastMainScreen} />
-//       <Tab.Screen name="Lunch" component={LunchMainScreen} />
-//       <Tab.Screen name="Dinner" component={DinnerMainScreen} />
-//       <Tab.Screen name="Snacks" component={SnacksMainScreen} />
-//       <Tab.Screen name="Desserts" component={DessertsMainScreen} />
-//     </Tab.Navigator>
-//   );
-// }
-function RecentlyCreatedMealsTabs({ route, navigation }) {
-  function navBack() {
-    navigation.goBack();
-    console.log("navigating back...");
-  }
-  const initialRouteName = route?.params?.initialRouteName || "Breakfast";
-  return (
-    <View style={styles.recentlyCreatedMealsTabscontainer}>
-      <Pressable onPress={navBack} style={styles.goBack}>
-        <AntDesign name="arrowleft" size={24} color="black" />
-      </Pressable>
-      <Tab.Navigator
-        initialRouteName={initialRouteName}
-        screenOptions={{headerShown:false}}
-      >
-        <Tab.Screen
-          name="Breakfast"
-          component={RecentlyCreatedBreakFastScreen}
-          options={{
-            tabBarIcon: ({ focused }) => {
-              return (
-                <MaterialIcons
-                  name="free-breakfast"
-                  size={24}
-                  color={focused ? Colors.mealTimePrimary : Colors.unfocused}
-                />
-              );
-            },
-            tabBarActiveTintColor: Colors.mealTimePrimary,
-            tabBarInactiveTintColor: Colors.unfocused,
-          }}
-        />
-        <Tab.Screen
-          name="Lunch"
-          component={RecentlyCreatedLunchScreen}
-          options={{
-            tabBarIcon: ({ focused }) => {
-              return (
-                <MaterialIcons
-                  name="lunch-dining"
-                  size={24}
-                  color={focused ? Colors.mealTimePrimary : Colors.unfocused}
-                />
-              );
-            },
-            tabBarActiveTintColor: Colors.mealTimePrimary,
-            tabBarInactiveTintColor: Colors.unfocused,
-          }}
-        />
-        <Tab.Screen
-          name="Dinner "
-          component={RecentlyCreatedDinnerScreen}
-          options={{
-            tabBarIcon: ({ focused }) => {
-              return (
-                <MaterialIcons
-                  name="dinner-dining"
-                  size={24}
-                  color={focused ? Colors.mealTimePrimary : Colors.unfocused}
-                />
-              );
-            },
-            tabBarActiveTintColor: Colors.mealTimePrimary,
-            tabBarInactiveTintColor: Colors.unfocused,
-          }}
-        />
-        <Tab.Screen
-          name="Snacks"
-          component={RecentlyCreatedSnackScreen}
-          options={{
-            tabBarIcon: ({ focused }) => {
-              return (
-                <MaterialCommunityIcons
-                  name="food-hot-dog"
-                  size={24}
-                  color={focused ? Colors.mealTimePrimary : Colors.unfocused}
-                />
-              );
-            },
-            tabBarActiveTintColor: Colors.mealTimePrimary,
-            tabBarInactiveTintColor: Colors.unfocused,
-          }}
-        />
-        <Tab.Screen
-          name="Desserts"
-          component={RecentlyCreatedDessertScreen}
-          options={{
-            tabBarIcon: ({ focused }) => {
-              return (
-                <MaterialIcons
-                  name="cake"
-                  size={24}
-                  color={focused ? Colors.mealTimePrimary : Colors.unfocused}
-                />
-              );
-            },
-            tabBarActiveTintColor: Colors.mealTimePrimary,
-            tabBarInactiveTintColor: Colors.unfocused,
-          }}
-        />
-      </Tab.Navigator>
-    </View>
-  );
-}
-//RECOMMENDED PLAN
-function RecommendedPlanTabs({ route, navigation }) {
-  function navBack() {
-    navigation.goBack();
-    console.log("navigating back...");
-  }
-  const initialRouteName = route?.params?.initialRouteName || "Breakfast";
-  return (
-    <Tab.Navigator initialRouteName={initialRouteName}>
-      <Tab.Screen name="Breakfast" component={RecommendedPlanBreakFastScreen} />
-      <Tab.Screen name="Lunch" component={RecommendedPlanLunchScreen} />
-      <Tab.Screen name="Dinner " component={RecommendedPlanDinnerScreen} />
-      <Tab.Screen name="Snacks" component={RecommendedPlanSnackScreen} />
-      <Tab.Screen name="Desserts" component={RecommendedPlanDessertScreen} />
-    </Tab.Navigator>
-  );
-}
+
 function Root() {
   const [isTryingLogin, setIsTryingLogin] = useState(true);
   const authCtx = useContext(AuthContext);
@@ -381,12 +230,33 @@ function Root() {
   }
   return <Navigation />;
 }
+Notifications.setNotificationHandler({
+  handleNotification: async () => {
+    return {
+      shouldPlaySound: false,
+      shouldSetBadge: false,
+      shouldShowAlert: true,
+    };
+  },
+});
 
 export default function App() {
+  function scheduleNotificationHandler() {
+    Notifications.scheduleNotificationAsync({
+      content: {
+        title: "My first local notification",
+        body: "This is the body of the notification",
+        data: { userName: "Daniel" },
+      },
+      trigger: { seconds: 5 },
+    });
+  }
   return (
     <View style={styles.container}>
       <AuthContextProvider>
-        <Root />
+        <FavouriteContextProvider>
+          <Root />
+        </FavouriteContextProvider>
       </AuthContextProvider>
     </View>
   );
@@ -402,7 +272,7 @@ const styles = StyleSheet.create({
     padding: 30,
     alignSelf: "flex-start", // Aligns the arrow to the start
   },
-  
+
   recentlyCreatedMealsTabscontainer: {
     flex: 1,
     backgroundColor: Colors.bodybgColor,

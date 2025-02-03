@@ -4,7 +4,7 @@ import { MOST_POPULAR_LUNCH } from "../../../../models/mealCategories/mostPopula
 import Card from "../../../../components/ui/Card";
 import FlatListVertical from "../../../../components/ui/FlatListVertical";
 import { Colors } from "../../../../util/Colors";
-const MostPopularLunchScreen = () => {
+const MostPopularLunchScreen = ({searchQuery}) => {
   const renderCard = ({ item }) => {
     return (
       <Card
@@ -33,6 +33,7 @@ const MostPopularLunchScreen = () => {
         renderItem={renderCard}
         title={"Most Popular"}
         numColumns={2}
+        searchQuery={searchQuery}
       />
     </View>
   );

@@ -9,6 +9,7 @@ export const RECOMMENDED_DESSERTS = [
     4,
     ["heavy-cream", "sugar", "egg-yolks", "vanilla-extract", "sugar-topping"],
     ["2 cups", "1/2 cup", "4", "1 tsp", "2 tbsp"],
+    10, // Number of instructions
     ["mixing-bowl", "ramekins", "blowtorch"],
     [
       "Preheat the oven to 325°F (160°C).",
@@ -35,6 +36,7 @@ export const RECOMMENDED_DESSERTS = [
     6,
     ["bananas", "graham-cracker-crust", "caramel", "whipped-cream", "chocolate-shavings"],
     ["3", "1 crust", "1 cup", "1 cup", "Optional"],
+    6, // Number of instructions
     ["mixing-bowl", "spatula"],
     [
       "Prepare the graham cracker crust if not pre-made and let it set.",
@@ -57,6 +59,7 @@ export const RECOMMENDED_DESSERTS = [
     6,
     ["dark-chocolate", "butter", "sugar", "eggs", "flour", "pastry-shells"],
     ["200g", "1/2 cup", "1/2 cup", "3", "1/4 cup", "6 shells"],
+    8, // Number of instructions
     ["mixing-bowl", "oven"],
     [
       "Preheat oven to 375°F (190°C).",

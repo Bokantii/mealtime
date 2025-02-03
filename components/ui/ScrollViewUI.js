@@ -1,5 +1,5 @@
-import React from "react";
-import { ScrollView, Text, View,StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { ScrollView, Text, View, StyleSheet } from "react-native";
 import FlatListView from "./FlatListView";
 const ScrollViewUI = ({
   mealTime,
@@ -14,7 +14,8 @@ const ScrollViewUI = ({
   keyExtractor,
   navScreen1,
   navScreen2,
-  navScreen3
+  navScreen3,
+  searchQuery
 }) => {
   return (
     <View>
@@ -28,6 +29,7 @@ const ScrollViewUI = ({
           horizontal={horizontal}
           screenName={mealTime}
           navScreen={navScreen1}
+          searchQuery={searchQuery}
         />
         <FlatListView
           title={title2}
@@ -37,6 +39,7 @@ const ScrollViewUI = ({
           horizontal={horizontal}
           screenName={mealTime}
           navScreen={navScreen2}
+          searchQuery={searchQuery}
         />
         <FlatListView
           title={title3}
@@ -46,6 +49,7 @@ const ScrollViewUI = ({
           horizontal={horizontal}
           screenName={mealTime}
           navScreen={navScreen3}
+          searchQuery={searchQuery}
         />
       </ScrollView>
     </View>
@@ -54,11 +58,11 @@ const ScrollViewUI = ({
 
 export default ScrollViewUI;
 
-const styles=StyleSheet.create({
-  mealTime:{
-    textAlign:'center',
-    fontWeight:'bold',
-    fontStyle:'italic',
-    marginBottom:20
-  }
-})
+const styles = StyleSheet.create({
+  mealTime: {
+    textAlign: "center",
+    fontWeight: "bold",
+    fontStyle: "italic",
+    marginBottom: 20,
+  },
+});

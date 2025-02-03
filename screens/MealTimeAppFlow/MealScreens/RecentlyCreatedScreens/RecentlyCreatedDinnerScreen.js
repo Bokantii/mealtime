@@ -4,7 +4,7 @@ import FlatListVertical from "../../../../components/ui/FlatListVertical";
 import Card from "../../../../components/ui/Card";
 import { Colors } from "../../../../util/Colors";
 import { RECENTLY_CREATED_DINNER } from "../../../../models/mealCategories/recentlyCreated/dinnerClass";
-const RecentlyCreatedDinnerScreen = () => {
+const RecentlyCreatedDinnerScreen = ({searchQuery}) => {
   const renderCard = ({ item }) => {
     return (
       <Card
@@ -33,6 +33,7 @@ const RecentlyCreatedDinnerScreen = () => {
         renderItem={renderCard}
         title={"Recently Created"}
         numColumns={2}
+        searchQuery={searchQuery}
       />
     </View>
   );

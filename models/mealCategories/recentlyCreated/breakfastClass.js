@@ -9,6 +9,7 @@ export const RECENTLY_CREATED_BREAKFAST = [
     12,
     ["all-purpose flour", "sugar", "baking powder", "salt", "butter", "eggs", "milk", "blueberries"],
     ["2 cups", "1 cup", "2 tsp", "1/2 tsp", "1/2 cup", "2", "1/2 cup", "1 cup"],
+    6, // Number of instructions
     ["mixing bowl", "oven", "muffin tin"],
     [
       "Preheat oven to 375°F (190°C).",
@@ -31,6 +32,7 @@ export const RECENTLY_CREATED_BREAKFAST = [
     1,
     ["rolled oats", "milk", "salt", "brown sugar", "raisins"],
     ["1 cup", "2 cups", "1/4 tsp", "2 tbsp", "1/4 cup"],
+    4, // Number of instructions
     ["saucepan", "bowl"],
     [
       "Boil water or milk in a saucepan.",
@@ -51,6 +53,7 @@ export const RECENTLY_CREATED_BREAKFAST = [
     1,
     ["eggs", "sausages", "tortilla wrap", "shredded cheese", "salt", "pepper"],
     ["2", "2", "1", "1/4 cup", "to taste", "to taste"],
+    5, // Number of instructions
     ["skillet", "spatula"],
     [
       "Cook sausages in a skillet.",
@@ -72,6 +75,7 @@ export const RECENTLY_CREATED_BREAKFAST = [
     1,
     ["croissant", "ham", "cheese", "butter"],
     ["1", "2 slices", "1 slice", "1 tbsp"],
+    5, // Number of instructions
     ["oven", "knife"],
     [
       "Preheat oven to 350°F (175°C).",
@@ -93,6 +97,7 @@ export const RECENTLY_CREATED_BREAKFAST = [
     1,
     ["tortilla wrap", "spinach", "feta cheese", "olive oil"],
     ["1", "1/2 cup", "1/4 cup", "1 tbsp"],
+    4, // Number of instructions
     ["skillet", "spatula"],
     [
       "Heat tortilla in a skillet.",
@@ -113,6 +118,7 @@ export const RECENTLY_CREATED_BREAKFAST = [
     1,
     ["waffle", "strawberries", "whipped cream"],
     ["1", "1/2 cup", "2 tbsp"],
+    3, // Number of instructions
     ["toaster", "knife"],
     [
       "Toast waffle until golden.",
@@ -132,6 +138,7 @@ export const RECENTLY_CREATED_BREAKFAST = [
     1,
     ["plantains", "eggs", "vegetable oil", "salt", "pepper"],
     ["1", "2", "1 tbsp", "to taste", "to taste"],
+    4, // Number of instructions
     ["skillet", "knife"],
     [
       "Peel and slice plantains.",
@@ -143,62 +150,5 @@ export const RECENTLY_CREATED_BREAKFAST = [
     "Breakfast",
     "Sweet fried plantains paired with fluffy scrambled eggs.",
     ["Quick", "Savory", "Comfort Food"]
-  ),
-  new Meal(
-    "8",
-    "Yogurt Parfait",
-    "https://media.istockphoto.com/id/1134253656/photo/yogurt-with-fresh-berries-and-granola.webp?a=1&b=1&s=612x612&w=0&k=20&c=xgaf2M2V94_8v6M0GM4XRQedGGb1shz7y8FyBCSYTS0=",
-    5,
-    1,
-    ["yogurt", "granola", "mixed berries"],
-    ["1 cup", "1/2 cup", "1/2 cup"],
-    ["bowl", "spoon"],
-    [
-      "Layer yogurt, granola, and berries in a glass.",
-      "Repeat layers until the glass is full.",
-      "Serve immediately."
-    ],
-    false,
-    "Breakfast",
-    "A quick and refreshing parfait layered with yogurt, granola, and berries.",
-    ["Healthy", "Quick", "Sweet"]
-  ),
-  new Meal(
-    "9",
-    "Scrambled Eggs with Toast",
-    "https://media.istockphoto.com/id/886179408/photo/light-fluffy-and-buttery-scrambled-eggs-on-toast.webp?a=1&b=1&s=612x612&w=0&k=20&c=-CtCnF8X7cAjepXHlimVI2RctgzVXTRtXSppcSSNl7g=",
-    10,
-    1,
-    ["eggs", "bread", "butter", "salt", "pepper"],
-    ["2", "2 slices", "1 tbsp", "to taste", "to taste"],
-    ["skillet", "knife"],
-    [
-      "Scramble eggs with salt and pepper.",
-      "Toast bread slices.",
-      "Serve scrambled eggs on top of toast."
-    ],
-    false,
-    "Breakfast",
-    "Fluffy scrambled eggs served with golden toast.",
-    ["Quick", "Savory", "Comfort Food"]
-  ),
-  new Meal(
-    "10",
-    "Bagel with Cream Cheese",
-    "https://media.istockphoto.com/id/511742246/photo/bagel-with-cream-cheese.webp?a=1&b=1&s=612x612&w=0&k=20&c=Dc29EddI-88F55BenM1Eq7pllJgxqcq56gwatQkSuaI=",
-    5,
-    1,
-    ["bagel", "cream cheese"],
-    ["1", "2 tbsp"],
-    ["toaster", "knife"],
-    [
-      "Toast the bagel halves.",
-      "Spread cream cheese evenly on each half.",
-      "Serve immediately."
-    ],
-    false,
-    "Breakfast",
-    "A toasted bagel generously spread with cream cheese.",
-    ["Quick", "Savory", "Classic"]
   )
 ];
