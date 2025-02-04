@@ -26,8 +26,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { TouchableOpacity } from "react-native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import Ionicons from '@expo/vector-icons/Ionicons';
-import Feather from '@expo/vector-icons/Feather';
+import Ionicons from "@expo/vector-icons/Ionicons";
+import Feather from "@expo/vector-icons/Feather";
+import SelectCollections from "./ActionMenuScreens/SelectCollections";
 const renderCookWare = ({ item }) => {
   return <Text style={styles.cookwareItem}>{item}</Text>;
 };
@@ -236,8 +237,28 @@ const MealDetail = ({ route, navigation }) => {
       "numberOfInstructions before navigating:",
       numberOfInstructions
     );
+    setModalVisible(false);
   }
-
+  //Navigate to Nutrition Facts
+  function navToNutritionFacts() {
+    navigation.navigate("NutritionFactsScreen");
+    setModalVisible(false);
+  }
+  //Navigate to Feedback Screen
+  function navToFeedBack() {
+    navigation.navigate("FeedbackScreen");
+    setModalVisible(false);
+  }
+  //Navigate to Notes
+  function navToNotes() {
+    navigation.navigate("NotesScreen");
+    setModalVisible(false);
+  }
+  //Navigate to Collections
+  function navToCollections() {
+    navigation.navigate("SelectCollections");
+    setModalVisible(false);
+  }
   console.log("number of servings:" + numOfServings);
   console.log("cookware:" + cookware);
   console.log("Route Params:" + route.params);
@@ -349,9 +370,14 @@ const MealDetail = ({ route, navigation }) => {
                 borderBottomWidth: 1,
                 borderBottomColor: "#ddd",
               }}
+              onPress={navToNutritionFacts}
             >
               <View style={styles.modal_content}>
-              <AntDesign name="exclamationcircleo" size={18} color="#999999" />
+                <AntDesign
+                  name="exclamationcircleo"
+                  size={18}
+                  color="#999999"
+                />
                 <Text style={styles.modalText}>Nutrition Facts</Text>
               </View>
             </TouchableOpacity>
@@ -361,6 +387,7 @@ const MealDetail = ({ route, navigation }) => {
                 borderBottomWidth: 1,
                 borderBottomColor: "#ddd",
               }}
+              onPress={startCooking}
             >
               <View style={styles.modal_content}>
                 <MaterialCommunityIcons
@@ -377,9 +404,10 @@ const MealDetail = ({ route, navigation }) => {
                 borderBottomWidth: 1,
                 borderBottomColor: "#ddd",
               }}
+              onPress={navToNotes}
             >
               <View style={styles.modal_content}>
-              <FontAwesome name="sticky-note-o" size={24} color="#999999" />
+                <FontAwesome name="sticky-note-o" size={24} color="#999999" />
                 <Text style={styles.modalText}>Add Notes</Text>
               </View>
             </TouchableOpacity>
@@ -391,7 +419,7 @@ const MealDetail = ({ route, navigation }) => {
               }}
             >
               <View style={styles.modal_content}>
-              <FontAwesome name="mail-forward" size={24} color="#999999" />
+                <FontAwesome name="mail-forward" size={24} color="#999999" />
                 <Text style={styles.modalText}>Share</Text>
               </View>
             </TouchableOpacity>
@@ -403,7 +431,7 @@ const MealDetail = ({ route, navigation }) => {
               }}
             >
               <View style={styles.modal_content}>
-              <Ionicons name="print-outline" size={24} color="#999999" />
+                <Ionicons name="print-outline" size={24} color="#999999" />
                 <Text style={styles.modalText}>Print</Text>
               </View>
             </TouchableOpacity>
@@ -413,15 +441,16 @@ const MealDetail = ({ route, navigation }) => {
                 borderBottomWidth: 1,
                 borderBottomColor: "#ddd",
               }}
+              onPress={navToFeedBack}
             >
               <View style={styles.modal_content}>
-              <FontAwesome name="commenting-o" size={24} color="#999999" />
+                <FontAwesome name="commenting-o" size={24} color="#999999" />
                 <Text style={styles.modalText}>Feedback For The Chef</Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity style={{ paddingVertical: 15, }}>
+            <TouchableOpacity style={{ paddingVertical: 15 }} onPress={navToCollections}>
               <View style={styles.modal_content}>
-              <Feather name="folder-plus" size={24} color="#999999" />
+                <Feather name="folder-plus" size={24} color="#999999" />
                 <Text style={styles.modalText}>Add To Collections</Text>
               </View>
             </TouchableOpacity>
@@ -645,6 +674,6 @@ const styles = StyleSheet.create({
   },
   modal_content: {
     flexDirection: "row",
-    alignItems:'center'
+    alignItems: "center",
   },
 });

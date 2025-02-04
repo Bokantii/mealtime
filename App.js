@@ -25,6 +25,11 @@ import RecommendedPlanTabs from "./screens/MealTimeAppFlow/Tabs/RecommendedPlanT
 import FavouriteContextProvider from "./store/favourites-context";
 import * as Notifications from "expo-notifications";
 import CookingInstructionScreen from "./screens/MealTimeAppFlow/CookingInstructions/CookingInstructionScreen";
+import NotesScreen from "./screens/MealTimeAppFlow/ActionMenuScreens/NotesScreen";
+import NutritionFactsScreen from "./screens/MealTimeAppFlow/ActionMenuScreens/NutritionFactsScreen";
+import FeedbackScreen from "./screens/MealTimeAppFlow/ActionMenuScreens/FeedbackScreen";
+import AddNewCollection from "./screens/MealTimeAppFlow/ActionMenuScreens/AddNewCollection";
+import SelectCollections from "./screens/MealTimeAppFlow/ActionMenuScreens/SelectCollections";
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 function AuthStack() {
@@ -87,8 +92,35 @@ function AuthenticatedStack() {
       <Stack.Screen
         name="RecommendedPlanTabs"
         component={RecommendedPlanTabs}
-        options={{ headerShown: true }}
+        options={{ headerShown: false }}
       />
+      <Stack.Screen
+        name="NotesScreen"
+        component={NotesScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="NutritionFactsScreen"
+        component={NutritionFactsScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="FeedbackScreen"
+        component={FeedbackScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="AddNewCollection"
+        component={AddNewCollection}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="SelectCollections"
+        component={SelectCollections}
+        options={{ headerShown: false }}
+      />
+      
+
     </Stack.Navigator>
   );
 }
